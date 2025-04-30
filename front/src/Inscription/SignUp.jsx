@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignUp() {
@@ -8,18 +8,11 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,47 +30,53 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-center items-center font-[Manrope]">
-      <h1 className="text-white text-4xl font-bold mb-10">S’inscrire</h1>
-      <form onSubmit={handleSubmit} className="w-full max-w-xs space-y-4">
-        <input
+    <div className={`min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col justify-center items-center font-manrope transition-opacity duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+      <h1 className="text-white text-5xl font-bold mb-10 tracking-wide animate-fade-in">S’inscrire</h1>
+      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-5 bg-white/5 p-8 rounded-2xl backdrop-blur-md shadow-xl animate-fade-up">
+        <Input
           type="email"
           placeholder="Adresse mail"
           value={email}
-          onChange={handleEmailChange}
-          className="w-full p-3 bg-black border border-purple-700 rounded-full text-white placeholder-purple-400"
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        <Input
           type="password"
           placeholder="Mot de passe"
           value={password}
-          onChange={handlePasswordChange}
-          className="w-full p-3 bg-black border border-purple-700 rounded-full text-white placeholder-purple-400"
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <input
+        <Input
           type="password"
           placeholder="Confirmer le mot de passe"
           value={confirmPassword}
-          onChange={handleConfirmPasswordChange}
-          className="w-full p-3 bg-black border border-purple-700 rounded-full text-white placeholder-purple-400"
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="w-full p-3 rounded-full text-white font-semibold transition-colors duration-300"
-          style={{ backgroundColor: '#E7A9FF' }}
-          onMouseOver={(e) => (e.target.style.backgroundColor = '#C229FF')}
-          onMouseOut={(e) => (e.target.style.backgroundColor = '#E7A9FF')}
+          className="w-full p-3 rounded-full text-white font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
         >
           S’inscrire
         </button>
       </form>
-      <p className="text-sm text-gray-400 mt-4">
+      <p className="text-sm text-gray-400 mt-6">
         Vous avez déjà un compte ?{' '}
-        <a href="/login" className="text-purple-500 font-semibold hover:underline">
+        <a href="/Connexion" className="text-purple-400 font-semibold hover:underline">
           Se connecter
         </a>
       </p>
     </div>
+  );
+}
+
+function Input({ type, placeholder, value, onChange }) {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className="w-full p-3 rounded-full bg-black border border-purple-600 text-white placeholder-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
+    />
   );
 }
