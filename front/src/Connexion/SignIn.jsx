@@ -1,32 +1,32 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignIn() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+    setEmail(e.target.value)
+  }
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+    setPassword(e.target.value)
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!email || !password ) {
-      setError('Tous les champs sont obligatoires.');
-      return;
+      setError('Tous les champs sont obligatoires.')
+      return
     }
    
-    setError('');
-    setSuccess(true);
-    navigate('/success');
-  };
+    setError('')
+    setSuccess(true)
+    navigate('/success')
+  }
 
   return (
     <div className="min-h-screen bg-black flex flex-col justify-center items-center font-[Manrope]">
