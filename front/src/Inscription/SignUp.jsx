@@ -54,7 +54,7 @@ export default function SignUp() {
         {error && <p className="text-red-500 text-sm">{error}</p>}
         <button
           type="submit"
-          className="w-full p-3 rounded-full text-white font-semibold bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+          className="w-full p-3 rounded-full text-white font-semibold bg-[#C229FF] transition-all duration-300 transform hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-purple-500 hover:scale-105 hover:shadow-lg"
         >
           S’inscrire
         </button>
