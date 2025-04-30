@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import SignUp from './Inscription/SignUp';
 import SignIn from './Connexion/SignIn';
+import Dashboard from './Feed/Feed';
 
 function SuccessPage() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
     <Routes>
       <Route path="/Inscription" element={<SignUp />} />
       <Route path="/Connexion" element={<SignIn />} />
+      <Route path="/Feed" element={<Dashboard />} />
       <Route path="/success" element={<SuccessPage />} />
     </Routes>
   );
