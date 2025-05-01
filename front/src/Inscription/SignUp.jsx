@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -14,20 +15,39 @@ export default function SignUp() {
     setMounted(true);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+  
     if (!email || !password || !confirmPassword) {
       setError('Tous les champs sont obligatoires.');
       return;
     }
+  
     if (password !== confirmPassword) {
       setError('Les mots de passe ne correspondent pas.');
       return;
     }
-    setError('');
-    setSuccess(true);
-    navigate('/success');
+  
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/local/user`,
+        {
+          username: email,
+          email,
+          password,
+        }
+      );
+  
+      console.log('Succès :', res.data);
+      setSuccess(true);
+      navigate('/success');
+  
+    } catch (err) {
+      const message = err.response?.data?.error?.message || 'Erreur inconnue';
+      setError(message);
+    }
   };
+  
 
   return (
     <div className={`min-h-screen bg-gradient-to-br from-black via-gray-900 to-black flex flex-col justify-center items-center font-manrope transition-opacity duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
