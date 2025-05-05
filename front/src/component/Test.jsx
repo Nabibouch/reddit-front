@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Test = () => {
 
-const [posts, setPosts] = useState();
+const [posts, setPosts] = useState([]);
 
 useEffect(() => {
     const fetchpost = async () => {
