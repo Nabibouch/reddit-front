@@ -28,7 +28,7 @@ const Test = () => {
   return (
     <>
       <h2>POSTS</h2>
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <section key={post.id}>
           <h3>{post.title}</h3>
           <p>{post.contenu}</p>
@@ -42,7 +42,7 @@ const Test = () => {
             />
           )}
         </section>
-      ))}
+      ))} */}
     </>
   );
 };
