@@ -13,7 +13,6 @@ export default function SignUp() {
   const [users, setUsers] = useState([]);
 
   const token = '190aa547da26a368df2b29a247e955ef9d4632229535c2298acb06c965bcd18870717a53a218b93561d08f67ca611f566874f7a409d7acabdd5e75e960f1477c9d636b55eefe71e4a42b1fc9fe1d6308d6ab5b383d8a94c49910ac8c2525937e564fa1c60eca6df362b959b870cae3d2ed243179e08e73fe1e73d4f9667016a6';
-
   useEffect(() => {
     setMounted(true);
     const fetchUsers = async () => {
