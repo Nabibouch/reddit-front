@@ -1,34 +1,17 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from './Footer/Footer';
 
 const Test = () => {
  
-  const [posts, setPosts] = useState([]);
-  const token = import.meta.env.VITE_API_TOKEN;
+ const [posts, setPosts] = useState([]);
+ const token = import.meta.env.VITE_API_TOKEN;
 
-useEffect(() => {
-    const fetchpost = async () => {
-        try {
-            const Brutedata = await axios.get('http://localhost:1337/api/posts', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            const data = Brutedata.data.data;
-            console.log(data);
-            setPosts(data);
-
-        } catch (error) {
-            console.log(error);
-            
-        }
-    }
-    fetchpost()
-},[]);
 
 
 
   useEffect(() => {
+
 
     //Appel API pour récupérer tout les post
     const fetchpost = async () => {
