@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserCircle, Search, Home, Bell, MessageCircle } from 'lucide-react';
 
-export default function Navbar() {
+export default function Header() {
   const [activeIcon, setActiveIcon] = useState('home');
   const navigate = useNavigate(); 
 
@@ -17,7 +17,7 @@ export default function Navbar() {
     ${activeIcon === iconName ? 'bg-[#cee6e5]/20 text-[#cee6e5]' : 'hover:bg-white/10 text-white'}`;
 
   return (
-    <nav className="bg-[#1a1e23] text-white font-manrope flex items-center justify-between px-6 py-3 shadow-md">
+    <nav className="bg-nightblue text-white font-manrope flex items-center justify-between px-6 py-3 shadow-md border-b border-b-gray">
       
       <div className="flex items-center space-x-2 hover:opacity-90 cursor-pointer transition duration-200">
         <UserCircle size={22} />
