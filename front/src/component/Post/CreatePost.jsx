@@ -10,7 +10,7 @@ export default function CreatePost() {
             <Input titre="Titre" required={true} />
                 <div className='flex flex-col gap-2'> </div>
             
-            <div className='w-[516px] border border-black px-3 rounded-[14px] h-[80px]'>
+            <div className='w-[516px] border border-black px-3 rounded-[50px] h-[200px]'>
                  <h2>Add Media</h2>
             </div>
 
