@@ -13,7 +13,7 @@ function App() {
         Blanditiis rerum explicabo exercitationem magnam fugit repellat quidem, ipsum repudiandae distinctio.
       </p>
       <LabelButton />
-      <LabelButtonWithIcon/>
+      <LabelButtonWithIcon />
     </>
   )
 }
