@@ -1,3 +1,6 @@
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './Header/header';
+import Sidebar from './Sidebar/sidebar';
 import { useState } from 'react'
 import './App.css'
 import Test from './component/Test'
@@ -16,7 +19,6 @@ function App() {
     console.log("cliqué")
   }
 
-  return (
     <>
       
       <Test />
@@ -29,4 +31,4 @@ function App() {
   )
 }
 
-export default App
+export default function App;
