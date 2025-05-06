@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import Footer from './Footer/Footer';
 
 
 const Test = () => {
@@ -41,6 +42,7 @@ return(
                         <p>{post.publishDate}</p>
                     </section>
                 ))}
+                <Footer/>
         </>
     )
 
