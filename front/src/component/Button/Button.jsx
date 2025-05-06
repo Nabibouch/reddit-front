@@ -1,10 +1,12 @@
 
 
 
-const Button = ({fonction= () => {}, name, color, stroke=false}) => {
+const Button = ({fonction= () => {}, name, color, stroke=false, stroke_color="black"}) => {
+
+    
 
     function stroke_active() {
-        return stroke ? "border border-black" : "" ;
+        return stroke ? `border-4 ${stroke_color}` : "" ;
     }
 
     return(

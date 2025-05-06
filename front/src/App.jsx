@@ -4,10 +4,13 @@ import Test from './component/Test'
 import CreerProfile from './component/creerProfile'
 import Input from './component/Input with label/Input'
 import Button from './component/Button/Button'
+import PrimaryButton from './component/Button/PrimaryButton'
 
 function App() {
   
-  const color = "bg-[rgb(0_255_0)]";
+  const bg_color = "bg-[rgb(0_0_255)]";
+  const border_color = "border-[rgb(0_255_255)]"
+  const blue = "rgb(0_0_255)";
 
   const cliqué = () => {
     console.log("cliqué")
@@ -18,8 +21,10 @@ function App() {
       
       <Test />
       <Input titre="titre"/>
-      <Button name="valider" fonction={cliqué} color={color} />
-      
+      {/* <button className='bg-blue-500 border border-[rgb(0_255_0)]'>Hello</button>
+      <Button name="valider" fonction={cliqué} color={bg_color} stroke={true} stroke_color={border_color} />
+      <Button name="valider" fonction={cliqué} color={"blue"} /> */}
+      <PrimaryButton title="valider"/>
     </>
   )
 }
