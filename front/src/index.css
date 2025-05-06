@@ -1,6 +1,9 @@
 @import "tailwindcss";
+@import url("")
 
 @theme {
+  --font-family: 'Satoshi', sans-serif;
+
   --color-black: #000000;
   --color-white: #FFFFFF;
 
@@ -62,6 +65,7 @@
   --color-darkred: #6E1B20;
 
   --color-olive: #A7972E;
+
 }
 /* :root {
 
