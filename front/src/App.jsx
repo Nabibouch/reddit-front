@@ -11,6 +11,7 @@ import PrimaryButton from './component/Button/PrimaryButton'
 import './App.css'
 import LabelButton from './Label/Label.jsx'
 import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
+import CreatePost from './component/Post/CreatePost.jsx';
 
 function App() {
   
@@ -29,6 +30,7 @@ function App() {
       </p>
       <LabelButton />
       <LabelButtonWithIcon />
+      <CreatePost />
     </>
   )
 }
