@@ -1,13 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './Header/header';
 import Sidebar from './Sidebar/sidebar';
-import { useState } from 'react'
+import { useState } from 'react';
 import './App.css'
 import Test from './component/Test'
 import CreerProfile from './component/creerProfile'
 import Input from './component/Input with label/Input'
 import Button from './component/Button/Button'
 import PrimaryButton from './component/Button/PrimaryButton'
+import './App.css'
+import LabelButton from './Label/Label.jsx'
+import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
 
 function App() {
   
@@ -20,15 +23,15 @@ function App() {
   }
   return(
     <>
-      
-      <Test />
-      <Input titre="titre"/>
-      {/* <button className='bg-blue-500 border border-[rgb(0_255_0)]'>Hello</button>
-      <Button name="valider" fonction={cliqué} color={bg_color} stroke={true} stroke_color={border_color} />
-      <Button name="valider" fonction={cliqué} color={"blue"} /> */}
-      <PrimaryButton title="valider"/>
+      <p className='text-red-500'>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet atque expedita repellat odit corrupti. 
+        Blanditiis rerum explicabo exercitationem magnam fugit repellat quidem, ipsum repudiandae distinctio.
+      </p>
+      <LabelButton />
+      <LabelButtonWithIcon />
     </>
   )
 }
+
 
 export default App;
