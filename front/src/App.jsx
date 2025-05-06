@@ -18,7 +18,7 @@ function App() {
   const cliqué = () => {
     console.log("cliqué")
   }
-
+  return(
     <>
       
       <Test />
@@ -31,4 +31,4 @@ function App() {
   )
 }
 
-export default function App;
+export default App;

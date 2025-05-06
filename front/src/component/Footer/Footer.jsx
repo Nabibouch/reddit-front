@@ -1,6 +1,4 @@
 // import {SearchX} from "lucide-react";
-import  from tailwind.config.js
-
 const Footer = () => {
 
     return(
