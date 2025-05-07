@@ -6,6 +6,7 @@ import SecondaryButton from './component/Button/SecondaryButton'
 import './App.css'
 import LabelButton from './Label/Label.jsx'
 import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
+import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
 
 function App() {
   
@@ -19,14 +20,9 @@ function App() {
   return(
     <>
       
-      <Test />
-      <Input titre="titre"/>
-      <br />
-      <br />
-      <PrimaryButton title="valider" use={cliqué}/>
-      <SecondaryButton title="refuser" use={cliqué}/>
-      <LabelButton />
-      <LabelButtonWithIcon />
+      <CreateCommunity />
+      <PrimaryButton title="valider" />
+      <SecondaryButton title="annuler" />
     </>
   )
 }
