@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
+
+{/*BROCOFLIX*/}
 export default function SignIn() {
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
@@ -16,16 +19,35 @@ export default function SignIn() {
     setPassword(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError('')
+
     if (!email || !password ) {
       setError('Tous les champs sont obligatoires.')
-      return
+      return;
     }
-   
-    setError('')
-    setSuccess(true)
-    navigate('/success')
+
+    try {
+      await axios.post(
+        'http://localhost:1337/api/auth/local',
+        {
+            identifier: email,
+            password  
+        },
+        {
+          headers: {
+            "Content-Type": "application/json"
+          },
+        }
+      )
+
+      setSuccess(true)
+      navigate('/Feed')
+    } catch (err) {
+      const message = err.response?.data?.error?.message || 'Erreur inconnue';
+      setError(message);
+    }
   }
 
   return (
