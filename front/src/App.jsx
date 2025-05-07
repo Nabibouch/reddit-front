@@ -5,6 +5,7 @@ import CreerProfile from './component/creerProfile'
 import Input from './component/Input with label/Input'
 import Button from './component/Button/Button'
 import PrimaryButton from './component/Button/PrimaryButton'
+import SecondaryButton from './component/Button/SecondaryButton'
 
 function App() {
   
@@ -24,7 +25,10 @@ function App() {
       {/* <button className='bg-blue-500 border border-[rgb(0_255_0)]'>Hello</button>
       <Button name="valider" fonction={cliqué} color={bg_color} stroke={true} stroke_color={border_color} />
       <Button name="valider" fonction={cliqué} color={"blue"} /> */}
-      <PrimaryButton title="valider"/>
+      <br />
+      <br />
+      <PrimaryButton title="valider" use={cliqué}/>
+      <SecondaryButton title="refuser" use={cliqué}/>
     </>
   )
 }
