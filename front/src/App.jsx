@@ -1,16 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './Header/header';
-import Sidebar from './Sidebar/sidebar';
-import Dashboard from './Structure/structure';
-import SignUp from './Inscription/signup';
-import SignIn from './Connexion/SignIn';
-import { useState } from 'react'
 import './App.css'
 import Test from './component/Test'
-import CreerProfile from './component/creerProfile'
 import Input from './component/Input with label/Input'
-import Button from './component/Button/Button'
 import PrimaryButton from './component/Button/PrimaryButton'
+import SecondaryButton from './component/Button/SecondaryButton'
+import './App.css'
+import LabelButton from './Label/Label.jsx'
+import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
+import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
 
 function App() {
   
@@ -25,12 +21,13 @@ function App() {
   return(
     <>
       
-      <Test />
       <Input titre="titre"/>
       <PrimaryButton title="valider"/>
+      <PrimaryButton title="valider" />
+      <SecondaryButton title="annuler" />
     </>
   )
 }
 
-export default App;
 
+export default App;
