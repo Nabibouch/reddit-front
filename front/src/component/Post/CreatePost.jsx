@@ -4,6 +4,7 @@ import PrimaryButton from '../Button/PrimaryButton'
 import Input from '../Input with label/Input'
 import { Plus } from 'lucide-react'
 import { useRef } from 'react'
+import axios from 'axios'
 
 export default function CreatePost() {
     const [image, setImage] = useState(null)
