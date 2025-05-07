@@ -70,7 +70,9 @@
 }
 
 body{
+  background-color: #161B21;
   color: red;
   padding: 10px;
+  font-family: 'Manrope', sans-serif;
 }
 
