@@ -7,6 +7,7 @@ import './App.css'
 import LabelButton from './Label/Label.jsx'
 import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
 import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
+import CreatePost from './component/Post/CreatePost.jsx'
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
       <CreateCommunity />
       <PrimaryButton title="valider" />
       <SecondaryButton title="annuler" />
+      <CreatePost />
     </>
   )
 }
