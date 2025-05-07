@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import './App.css'
 import Test from './component/Test'
-import CreerProfile from './component/creerProfile'
 import Input from './component/Input with label/Input'
-import Button from './component/Button/Button'
 import PrimaryButton from './component/Button/PrimaryButton'
 import SecondaryButton from './component/Button/SecondaryButton'
+import './App.css'
+import LabelButton from './Label/Label.jsx'
+import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
 
 function App() {
   
@@ -16,21 +16,20 @@ function App() {
   const cliqué = () => {
     console.log("cliqué")
   }
-
-  return (
+  return(
     <>
       
       <Test />
       <Input titre="titre"/>
-      {/* <button className='bg-blue-500 border border-[rgb(0_255_0)]'>Hello</button>
-      <Button name="valider" fonction={cliqué} color={bg_color} stroke={true} stroke_color={border_color} />
-      <Button name="valider" fonction={cliqué} color={"blue"} /> */}
       <br />
       <br />
       <PrimaryButton title="valider" use={cliqué}/>
       <SecondaryButton title="refuser" use={cliqué}/>
+      <LabelButton />
+      <LabelButtonWithIcon />
     </>
   )
 }
 
-export default App
+
+export default App;
