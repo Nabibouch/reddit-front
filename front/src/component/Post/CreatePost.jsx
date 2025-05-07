@@ -6,11 +6,20 @@ import { Plus } from 'lucide-react'
 import { useRef } from 'react'
 
 export default function CreatePost() {
+    const [image, setImage] = useState(null)
     const fileInputRef = useRef(null)
     
     const handleUploadClick = () => {
         fileInputRef.current.click()
     }
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0]
+        if (file) {
+          const imageUrl = URL.createObjectURL(file)
+          setImage(imageUrl) 
+        }
+      }
     return (
         <div className="bg-[#161B21] p-6 rounded-2xl w-fit">
             <div className='flex flex-col gap-4 p-6 rounded-2xl'>
@@ -23,7 +32,10 @@ export default function CreatePost() {
                     <div  onClick={handleUploadClick} className="w-5 h- rounded-full bg-white flex items-center justify-center cursor-pointer">
                         < Plus className="text-black w-5 h-5" />
                     </div>
-                    <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" />
+                    <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" onChange={handleFileChange}/>
+                    {image && (
+                    <div className="w-full h-[150px] mt-4 bg-cover bg-center rounded-[50px]" style={{ backgroundImage: `url(${image})` }} />
+                    )}
                 </div>
 
                 <Input titre="Description" required={true} />
