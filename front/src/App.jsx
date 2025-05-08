@@ -1,5 +1,7 @@
 import './App.css'
 import DefaultStructure from './component/Default structure/DefaultStructure';
+import CreateCommunity from './component/CreateComunity/CreateComunity';
+import { UserThumb } from './component/UserThumb/UserThumb';
 
 function App() {
   
@@ -14,11 +16,11 @@ function App() {
   return(
     <>
       <DefaultStructure>
-
+        <UserThumb />
       </DefaultStructure>
 
     </>
     )
 }
 
-// export default App;
+export default App;
