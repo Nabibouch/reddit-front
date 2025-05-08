@@ -5,16 +5,16 @@ import Footer from "../Footer/Footer";
 
 const DefaultStructure = ({children}) => {
     return(
-        <>
+        <main className="flex flex-col h-[760px]">
             <Navbar />
                 <section className="flex flex-row">
                     <Sidebar />
-                    <main className="flex pt-1">
+                    <section className="flex pt-4">
                         {children}
-                    </main>
+                    </section>
                 </section>
             <Footer />
-        </>
+        </main>
     )
 }
 

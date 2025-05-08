@@ -11,6 +11,7 @@ const CreateCommunity = () => {
     const [showModal, setShowModal] = useState(false);
     const [topics, setTopics ] = useState([]);
     const [choosedTopics, setChoosedTopics] = useState([]);
+    const [validateTopics, setValidateTopics] = useState([]);
 
     const url = import.meta.env.VITE_API_URL;
     const token = import.meta.env.VITE_API_TOKEN;
@@ -23,6 +24,17 @@ const CreateCommunity = () => {
     const deleteTopic = (topic) => {
         setChoosedTopics(choosedTopics.filter((t) => t.id !== topic.id));    
     }
+    const deleteValidateTopic = (topic) => {
+        setValidateTopics(validateTopics.filter((t) => t.id !== topic.id));
+        setChoosedTopics(validateTopics.filter((t) => t.id !== topic.id));  
+        
+    }
+
+    const validate = () => {
+        setValidateTopics([...choosedTopics]);
+    }
+
+    
 
     useEffect(() =>{
 
@@ -54,12 +66,25 @@ const CreateCommunity = () => {
                     </div>
                     <Input titre="Nom de la communauté" required={true} limit={10} taille="petit" id="title" />
                     <Input titre="Description" id="desc" required={true} taille="grand" placeholder="Une nouvelle communauté ? Pourquoi faire ?" />
+                    <div className="flex flex-col gap-2">
                     <h2 className="flex text-darkteal-20 text-2xl gap-2 items-center">
-                        Ajouter des topics
+                        Ajouter des topics <span className="text-red-500">*</span>
                         <button onClick={() => setShowModal(true)} className="hover:brightness-70">
                             <PlusCircle size={30} />
                         </button>
                     </h2>
+                    <div className="flex flex-row gap-1 h-[34px]">
+                    {validateTopics.map((t) => (
+                        <div key={t.id}>
+                        <LabelButtonWithIcon name={t.name} use={() => deleteValidateTopic(t)} />
+                        </div>
+                    ))}
+                    </div>
+                    <div className="flex flex-row justify-end gap-1">
+                        <SecondaryButton name="Annuler" />
+                        <PrimaryButton name="Valider" use={submit}/>
+                    </div>
+                    </div>
                 </div>
             </div>
 
@@ -90,9 +115,9 @@ const CreateCommunity = () => {
                             ))}
                             </div>
                         </div>
-                        <div className="flex justify-end">
+                        <div className="flex justify-end gap-1">
                             <SecondaryButton name="annuler" use={() => setShowModal(false)}/>
-                            <PrimaryButton name="Valider" />
+                            <PrimaryButton name="Valider" use={() => validate()} use2={() => setShowModal(false)}/>
                         </div>
                     </div>
                 </div>
