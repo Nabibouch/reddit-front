@@ -1,29 +1,23 @@
 import './App.css'
-import Test from './component/Test'
-import Input from './component/Input with label/Input'
-import PrimaryButton from './component/Button/PrimaryButton'
-import SecondaryButton from './component/Button/SecondaryButton'
-import './App.css'
-import LabelButton from './Label/Label.jsx'
-import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
-import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
+import DefaultStructure from './component/Default structure/DefaultStructure';
 
 function App() {
   
   const bg_color = "bg-[rgb(0_0_255)]";
-  const border_color = "border-[rgb(0_255_255)]"
+  const border_color = "border-[rgb(0_255_255)]";
   const blue = "rgb(0_0_255)";
 
-  const cliqué = () => {
-    console.log("cliqué")
+  const clique = () => {
+    console.log("clique")
   }
+
   return(
     <>
-      
-      <CreateCommunity />
+      <DefaultStructure>
+
+      </DefaultStructure>
     </>
-  )
+    )
 }
 
-
-export default App;
+// export default App;
