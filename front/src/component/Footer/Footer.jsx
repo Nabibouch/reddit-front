@@ -3,7 +3,7 @@ const Footer = () => {
 
     return(
         <footer>
-            <div className="footer-container bg-[back] py-4">
+            <div className="footer-container bg-nightblue py-4 border-t border-t-gray">
                 <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-sm text-center md:text-left text-white ">&copy; Malhetic 2025. All rights reserved.</p>
                     <div className="flex space-x-4 mt-4 md:mt-0">

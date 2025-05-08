@@ -17,7 +17,7 @@ export default function Sidebar() {
   const iconColor = '#9ACECA';
 
   return (
-    <aside className="w-60 min-h-screen bg-[#1a1e23] text-white font-manrope flex flex-col justify-between py-6 px-4">
+    <aside className="w-60 min-h-screen bg-nightblue text-white font-manrope flex flex-col justify-between py-6 px-4 border-r border-r-gray">
       <div className="space-y-4">
         <div className="space-y-3">
           <SidebarItem label="Home" bold hideIcon onClick={() => navigate('/home')} />
@@ -49,7 +49,7 @@ export default function Sidebar() {
               icon={<Smile size={16} color={iconColor} />} 
               onClick={() => navigate('/associations')} 
               />
-              <SidebarItem label="Événements" 
+              <SidebarItem label="Évènements" 
               icon={<Calendar size={16} color={iconColor} />} 
               onClick={() => navigate('/evenements')} 
               />
