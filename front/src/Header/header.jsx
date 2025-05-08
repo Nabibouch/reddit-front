@@ -4,9 +4,9 @@ import { UserCircle, Search, Home, Bell, MessageCircle } from 'lucide-react';
 
 export default function Header() {
   const [activeIcon, setActiveIcon] = useState('home');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const navIcons = [
+  const headerIcons = [
     { name: 'home', icon: <Home size={20} />, route: '/home' },
     { name: 'bell', icon: <Bell size={20} />, route: '/notifications' },
     { name: 'chat', icon: <MessageCircle size={20} />, route: '/messages' },
@@ -24,7 +24,7 @@ export default function Header() {
         <span className="text-sm font-medium">Username</span>
       </div>
 
-      <div className="flex items-center bg-[#cee6e5] rounded-full px-4 py-2 w-full max-w-md shadow-inner focus-within:ring-2 ring-offset-2 ring-[#cee6e5]">
+      <div className="flex items-center bg-darkteal-20 rounded-full px-4 py-2 w-full max-w-md shadow-inner focus-within:ring-2 ring-offset-2 ring-darkteal-40 hover:bg-darkteal-40">
         <input
           type="text"
           placeholder="Recherche sur Malhetic"
@@ -37,17 +37,17 @@ export default function Header() {
       </div>
 
       <div className="flex items-center space-x-4">
-        {navIcons.map(({ name, icon, route }) => (
+        {headerIcons.map(({ name, icon, route }) => (
           <button
             key={name}
             onClick={() => {
               setActiveIcon(name);
-              navigate(route); 
+              navigate(route);
             }}
             className={iconClasses(name)}
             aria-label={name}
           >
-            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-xs bg-white text-black rounded px-1 py-0.5 opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+            <span className="absolute -top-7 left-1/2 -translate-x-1/2 text-xs bg-darkteal-20 text-black rounded px-1 py-0.5 opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
               {name.charAt(0).toUpperCase() + name.slice(1)}
             </span>
             {icon}
