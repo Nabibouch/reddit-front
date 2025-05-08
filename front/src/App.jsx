@@ -21,8 +21,6 @@ function App() {
     <>
       
       <CreateCommunity />
-      <PrimaryButton title="valider" />
-      <SecondaryButton title="annuler" />
     </>
   )
 }
