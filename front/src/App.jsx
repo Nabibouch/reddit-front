@@ -1,4 +1,3 @@
-
 import './App.css'
 import DefaultStructure from './component/Default structure/DefaultStructure';
 
@@ -17,8 +16,9 @@ function App() {
       <DefaultStructure>
 
       </DefaultStructure>
+
     </>
     )
 }
 
-export default App;
+// export default App;
