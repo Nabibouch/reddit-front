@@ -3,14 +3,14 @@ import Sidebar from "../../Sidebar/Sidebar";
 import Footer from "../Footer/Footer";
 
 
-const DefaultStructure = ({component}) => {
+const DefaultStructure = ({children}) => {
     return(
         <>
             <Navbar />
-                <section>
+                <section className="flex flex-row">
                     <Sidebar />
-                    <main style={{flex: 1}}>
-                        {component}
+                    <main className="flex pt-1">
+                        {children}
                     </main>
                 </section>
             <Footer />
