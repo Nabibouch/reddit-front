@@ -1,5 +1,5 @@
 
-const Input = ({titre, required=false, limit=false, taille, placeholder="Écrivez ici...", id}) => {
+const Input = ({titre, required=false, limit=false, taille, placeholder="Écrivez ici...", id, onChange}) => {
 
     const width = "w-[300px]";
 
@@ -21,7 +21,10 @@ const Input = ({titre, required=false, limit=false, taille, placeholder="Écrive
             name={id} 
             id={id}
             maxLength={limit || undefined}
-            placeholder={placeholder}></textarea>
+            placeholder={placeholder}
+            onChange={onChange}
+            // defaultValue={titre}
+            ></textarea>
         </div>
     )
 }

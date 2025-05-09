@@ -1,12 +1,13 @@
-import Navbar from "../../Header/header"
-import Sidebar from "../../Sidebar/Sidebar";
+import Header from "../Header/header";
+import Sidebar from "../Sidebar/sidebar";
 import Footer from "../Footer/Footer";
+
 
 
 const DefaultStructure = ({children}) => {
     return(
         <main className="flex flex-col h-[760px]">
-            <Navbar />
+            <Header />
                 <section className="flex flex-row">
                     <Sidebar />
                     <section className="flex pt-4">

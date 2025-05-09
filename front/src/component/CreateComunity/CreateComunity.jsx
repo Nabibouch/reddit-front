@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Input from "../Input with label/Input";
 import { PlusCircle, X } from "lucide-react";
 import axios from "axios";
-import LabelButton from "../../Label/Label";
-import LabelButtonWithIcon from "../../Label/LabelWIcon";
+import LabelButton from "../Label/Label";
+import LabelButtonWithIcon from "../Label/LabelWIcon";
 import PrimaryButton from "../Button/PrimaryButton";
 import SecondaryButton from "../Button/SecondaryButton";
 
@@ -12,6 +12,10 @@ const CreateCommunity = () => {
     const [topics, setTopics ] = useState([]);
     const [choosedTopics, setChoosedTopics] = useState([]);
     const [validateTopics, setValidateTopics] = useState([]);
+    const [title, setTitle] = useState();
+    const [desc, setDesc] = useState();
+
+
 
     const url = import.meta.env.VITE_API_URL;
     const token = import.meta.env.VITE_API_TOKEN;
@@ -34,6 +38,27 @@ const CreateCommunity = () => {
         setValidateTopics([...choosedTopics]);
     }
 
+    const submit = async () => {
+        const data = {
+            data : {
+                name : title,
+                description : desc,
+                topics : validateTopics.map((t) => t.id)
+            }
+        }
+        try {
+            const response = await axios.post(`${url}/sub-reddits`, data, {
+                headers : {
+                    Authorization : `Bearer ${token}`
+                }
+            })
+            console.log("envoyé ", response);
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     
 
     useEffect(() =>{
@@ -52,8 +77,8 @@ const CreateCommunity = () => {
                 
             }
         }
-        fetchTopics()
-        console.log(choosedTopics)
+        fetchTopics();
+        
 
     },[choosedTopics])
 
@@ -64,8 +89,20 @@ const CreateCommunity = () => {
                     <div className="flex items-center">
                         <h1 className="text-darkteal-20 text-3xl">Nouvelle communauté</h1>
                     </div>
-                    <Input titre="Nom de la communauté" required={true} limit={10} taille="petit" id="title" />
-                    <Input titre="Description" id="desc" required={true} taille="grand" placeholder="Une nouvelle communauté ? Pourquoi faire ?" />
+                    <Input titre="Nom de la communauté" 
+                    required={true} 
+                    limit={10} 
+                    taille="petit" 
+                    id="title" 
+                    onChange={(e)=>setTitle(e.target.value)} 
+                    />
+                    <Input titre="Description" 
+                    id="desc" 
+                    required={true} 
+                    taille="grand" 
+                    placeholder="Une nouvelle communauté ? Pourquoi faire ?" 
+                    onChange={(e) => setDesc(e.target.value)}
+                    />
                     <div className="flex flex-col gap-2">
                     <h2 className="flex text-darkteal-20 text-2xl gap-2 items-center">
                         Ajouter des topics <span className="text-red-500">*</span>
@@ -82,7 +119,7 @@ const CreateCommunity = () => {
                     </div>
                     <div className="flex flex-row justify-end gap-1">
                         <SecondaryButton name="Annuler" />
-                        <PrimaryButton name="Valider" use={submit}/>
+                        <PrimaryButton name="Valider" use={() => submit()}/>
                     </div>
                     </div>
                 </div>
