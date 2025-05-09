@@ -1,20 +1,21 @@
-import Navbar from "../../Header/header"
-import Sidebar from "../../Sidebar/Sidebar";
+import Header from "../Header/header";
+import Sidebar from "../Sidebar/sidebar";
 import Footer from "../Footer/Footer";
 
 
-const DefaultStructure = ({component}) => {
+
+const DefaultStructure = ({children}) => {
     return(
-        <>
-            <Navbar />
-                <section>
+        <main className="flex flex-col h-[760px]">
+            <Header />
+                <section className="flex flex-row">
                     <Sidebar />
-                    <main style={{flex: 1}}>
-                        {component}
-                    </main>
+                    <section className="flex pt-4">
+                        {children}
+                    </section>
                 </section>
             <Footer />
-        </>
+        </main>
     )
 }
 
