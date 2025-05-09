@@ -9,6 +9,7 @@ import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
 import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
 import CreatePost from './component/Post/CreatePost.jsx'
 import Messagerie from './Message/Message.jsx'
+import Dashboard from './Message/Message.jsx'
 
 function App() {
   
