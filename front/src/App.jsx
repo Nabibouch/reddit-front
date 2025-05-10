@@ -1,6 +1,7 @@
 import './App.css'
 import CreateCommunity from './component/CreateComunity/CreateComunity';
 import DefaultStructure from './component/Default structure/DefaultStructure';
+import Feed from './component/Feed/Feed';
 
 function App() {
   
@@ -12,7 +13,7 @@ function App() {
   return(
     <>
       <DefaultStructure>
-        <CreateCommunity />
+        <Feed />
       </DefaultStructure>
     </>
     )

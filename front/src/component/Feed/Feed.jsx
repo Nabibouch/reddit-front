@@ -1,64 +1,71 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import {
-  Home, Search, Laptop, Users, Calendar,
-  Megaphone, Briefcase, Image, MessageCircle, Mail, User
-} from 'lucide-react'
+import { useEffect, useState } from 'react'
+import axios from "axios";
+import PrimaryButton from '../Button/PrimaryButton';
 
-const navItems = [
-  { label: 'Technologies', icon: Laptop, path: '/technologies' },
-  { label: 'Associations / BDE', icon: Users, path: '/associations' },
-  { label: 'Événements', icon: Calendar, path: '/evenements' },
-  { label: 'Annonces', icon: Megaphone, path: '/annonces' },
-  { label: 'Stages / Alternances', icon: Briefcase, path: '/stages' },
-  { label: 'Memes', icon: Image, path: '/memes' },
-  { label: 'Messages', icon: MessageCircle, path: '/messages' },
-  { label: 'Contact', icon: Mail, path: '/contact' },
-  { label: 'Compte', icon: User, path: '/compte' },
-]
+const Feed = () => {
 
-export default function Dashboard() {
-  const navigate = useNavigate()
+  const [community, setCommunity] = useState('');
+  const [date, setDate] = useState('');
+  const [title, setTitle] = useState('');
+  const [image, setImage] = useState('');
+  const [posts, setPosts] = useState([]);
 
-  return (
-    <div className="flex bg-black text-white font-sans">
-      <aside className="w-64 bg-gradient-to-b from-zinc-900 to-black p-4 border-r border-zinc-800 h-screen fixed left-0 top-0">
-        <h1 className="text-2xl font-bold mb-8 text-purple-500 tracking-wide">Feed</h1>
-        <nav className="space-y-2">
-          {navItems.map(({ label, icon: Icon, path }) => (
-            <div
-              key={label}
-              onClick={() => navigate(path)}
-              className="group flex items-center gap-3 p-3 rounded-xl cursor-pointer hover:bg-zinc-800 transition-all duration-300 hover:scale-[1.02] shadow-sm hover:shadow-purple-500/10"
-            >
-              <Icon size={20} className="text-purple-400 group-hover:text-white transition" />
-              <span className="group-hover:text-white text-zinc-300 transition">{label}</span>
+  const url = import.meta.env.VITE_API_URL;
+    const token = import.meta.env.VITE_API_TOKEN;
+
+
+  useEffect(() => {
+    
+    const fetchPost = async () => {
+      try {
+        const Brutedata = await axios.get(`${url}/posts?populate=*`,{
+          headers: {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        const data = Brutedata.data.data
+        console.log(data);
+        setPosts(data);
+        setImage(data.Photo)
+        console.log(data.Photo);
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchPost();
+
+  },[]);
+
+ 
+ 
+ 
+  return(
+    <div className='flex flex-col pl-20 gap-2.5 h-[625px] overflow-auto no-scrollbar'>
+      <section className='flex flex-col gap-7 w-[510px]'>
+        {posts.map((post) =>{ 
+          return(
+        
+          <div key={post.id} className='flex flex-col gap-[10px] bg-nightblue hover:brightness-115'>
+            <div className='flex flex-row h-[25px] justify-between'>
+            <h3 className='text-[16px]'>{post.sub_reddit?.name ?? "Aucune commu"}</h3>
+            <PrimaryButton name="rejoindre" />
             </div>
-          ))}
-        </nav>
-      </aside>
-
-      <main className="ml-64 flex-1 min-h-screen">
-        <header className="p-4 sticky top-0 z-50 backdrop-blur-md bg-black/60 border-b border-zinc-800 flex items-center justify-center shadow-sm">
-          <div className="relative w-full max-w-md mx-auto">
-            <input
-              type="text"
-              placeholder="Recherche..."
-              className="w-full bg-zinc-800/80 text-white placeholder-zinc-500 rounded-full pl-4 pr-10 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500/70 transition-all"
-            />
-            <Search className="absolute right-3 top-2.5 text-zinc-400" size={20} />
+            <h2 className='text-[20px]'>{post.title}</h2>
+            {post.Photo ? (
+              <img src={"http://localhost:1337" + post.Photo[0].formats.small.url} alt="image du post" />
+            ) : (
+              <p>{post.contenu}</p>
+            )
+            }
+            
           </div>
-          <div className="absolute right-6 text-zinc-400 hover:text-white cursor-pointer transition-colors">
-            <Home size={24} />
-          </div>
-        </header>
-
-        <section className="p-6 animate-fadeIn">
-          <h2 className="text-3xl font-semibold text-purple-500 mb-2">Homepage</h2>
-          <p className="text-zinc-400 mb-4">Les publications récentes :</p>
-          <div className="h-[1500px]" />
-        </section>
-      </main>
+        )})}
+        {/* <h2>{posts.title}</h2> */}
+        
+      </section>
     </div>
   )
 }
+
+export default Feed;

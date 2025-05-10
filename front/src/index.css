@@ -73,5 +73,14 @@ body{
   background-color: #161B21;
   color: aliceblue;
   font-family: "Manrope", sans-serif;
+  
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
