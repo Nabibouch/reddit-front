@@ -1,33 +1,49 @@
-import './App.css'
-import Test from './component/Test'
-import Input from './component/Input with label/Input'
-import PrimaryButton from './component/Button/PrimaryButton'
-import SecondaryButton from './component/Button/SecondaryButton'
-import './App.css'
-import LabelButton from './Label/Label.jsx'
-import LabelButtonWithIcon from './Label/LabelWIcon.jsx'
-import CreateCommunity from './component/CreateComunity/CreateComunity.jsx'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import SignIn from './Connexion/SignIn';
+import SignUp from './Inscription/SignUp';
+import Feed from './Feed/Feed';
+import CreateCommunity from './component/CreateComunity/CreateComunity';
+import Footer from './component/Footer/Footer';
+import Input from './component/Input with label/Input';
+import PrimaryButton from './component/Button/PrimaryButton';
+import SecondaryButton from './component/Button/SecondaryButton';
 
 function App() {
-  
-  const bg_color = "bg-[rgb(0_0_255)]";
-  const border_color = "border-[rgb(0_255_255)]"
-  const blue = "rgb(0_0_255)";
-
-  const cliqué = () => {
-    console.log("cliqué")
-  }
-
-  return(
-    <>
-      
-      <Input titre="titre"/>
-      <PrimaryButton title="valider"/>
-      <PrimaryButton title="valider" />
-      <SecondaryButton title="annuler" />
-    </>
-  )
+  return (
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Connexion" element={<SignIn />} />
+        <Route path="/Inscription" element={<SignUp />} />
+        <Route path="/Feed" element={<Feed />} />
+        <Route path="/CreateCommunity" element={<CreateCommunity />} />
+        <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+  );
 }
 
+const Home = () => (
+  <div className="text-white text-center mt-10">
+    <h1 className="text-4xl">Bienvenue sur l'Accueil</h1>
+    <p className="text-gray-400">Choisissez une page à visiter</p>
+  </div>
+);
+
+const TestUI = () => (
+  <div className="p-10 flex flex-col gap-4">
+    <Input titre="titre" />
+    <PrimaryButton title="valider" />
+    <SecondaryButton title="annuler" />
+    <Footer title="footer" />
+  </div>
+);
+
+const NotFound = () => (
+  <div className="text-white text-center mt-10">
+    <h1 className="text-2xl">404 - Page non trouvée</h1>
+  </div>
+);
 
 export default App;
