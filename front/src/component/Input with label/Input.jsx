@@ -1,3 +1,4 @@
+import { useState } from "react";
 
 const Input = ({titre, required=false, limit=false, taille, placeholder="Écrivez ici...", id, onChange}) => {
 
@@ -26,7 +27,7 @@ const Input = ({titre, required=false, limit=false, taille, placeholder="Écrive
             // defaultValue={titre}
             ></textarea>
         </div>
-    )
-}
+    );
+};
 
 export default Input;

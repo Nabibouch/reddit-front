@@ -1,16 +1,32 @@
-
-
-const PrimaryButton = ({name, use= () => {}, use2 = () => {}}) => {
-
-    const handleclick = () => {
-        use();
-        use2();
-    }
-
-    return(
-        
-        <button className="bg-[rgb(103_181_175)] rounded-[28px] justify-center items-center border border-transparent text-black w-28 hover:border-3 hover:border-darkteal hover:brightness-90 hover:text-black active:brightness-110" onClick={handleclick}>{name}</button>
-    )
-}
-
-export default PrimaryButton;
+const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
+    return (
+      <button
+        onClick={onClick}
+        disabled={disabled}
+        className={`
+          bg-[rgb(103,181,175)] 
+          text-black 
+          font-semibold
+          px-6 py-2 
+          w-32
+          rounded-full
+          border border-transparent 
+          shadow-sm
+          transition-all duration-200 ease-in-out
+          hover:brightness-105 
+          hover:scale-105 
+          active:scale-95
+          focus:outline-none 
+          focus:ring-2 focus:ring-offset-2 focus:ring-teal-400
+          disabled:opacity-50 
+          disabled:cursor-not-allowed 
+          cursor-pointer
+        `}
+      >
+        {title}
+      </button>
+    );
+  };
+  
+  export default PrimaryButton;
+  
