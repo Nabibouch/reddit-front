@@ -1,21 +1,49 @@
-import { Routes, Route } from 'react-router-dom';
-import SignUp from './Inscription/SignUp';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import SignIn from './Connexion/SignIn';
+import SignUp from './Inscription/SignUp';
+import Feed from './Feed/Feed';
+import CreateCommunity from './component/CreateComunity/CreateComunity';
+import Footer from './component/Footer/Footer';
+import Input from './component/Input with label/Input';
+import PrimaryButton from './component/Button/PrimaryButton';
+import SecondaryButton from './component/Button/SecondaryButton';
 
-function SuccessPage() {
+function App() {
   return (
-    <div className="min-h-screen bg-black flex justify-center items-center text-white font-[Manrope] text-2xl">
-      Inscription réussie !
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Connexion" element={<SignIn />} />
+        <Route path="/Inscription" element={<SignUp />} />
+        <Route path="/Feed" element={<Feed />} />
+        <Route path="/CreateCommunity" element={<CreateCommunity />} />
+        <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
   );
 }
 
-export default function App() {
-  return (
-    <Routes>
-      <Route path="/Inscription" element={<SignUp />} />
-      <Route path="/Connexion" element={<SignIn />} />
-      <Route path="/success" element={<SuccessPage />} />
-    </Routes>
-  );
-}
+const Home = () => (
+  <div className="text-white text-center mt-10">
+    <h1 className="text-4xl">Bienvenue sur l'Accueil</h1>
+    <p className="text-gray-400">Choisissez une page à visiter</p>
+  </div>
+);
+
+const TestUI = () => (
+  <div className="p-10 flex flex-col gap-4">
+    <Input titre="titre" />
+    <PrimaryButton title="valider" />
+    <SecondaryButton title="annuler" />
+    <Footer title="footer" />
+  </div>
+);
+
+const NotFound = () => (
+  <div className="text-white text-center mt-10">
+    <h1 className="text-2xl">404 - Page non trouvée</h1>
+  </div>
+);
+
+export default App;

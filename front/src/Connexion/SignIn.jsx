@@ -1,69 +1,98 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './SignIn.css';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function SignIn() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!email || !password ) {
-      setError('Tous les champs sont obligatoires.');
-      return;
+    if (!email || !password) {
+      setError('Tous les champs sont obligatoires.')
+      return
     }
-   
-    setError('');
-    setSuccess(true);
-    navigate('/success');
-  };
+
+    try {
+      await axios.post(
+        'http://localhost:1337/api/auth/local',
+        {
+          identifier: email,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+
+      navigate('/Feed')
+    } catch (err) {
+      const message = err.response?.data?.error?.message || 'Erreur inconnue'
+      setError(message)
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-center items-center font-[Manrope]">
-      <h1 className="text-white text-4xl font-bold mb-10">Se connecter</h1>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-[#161B21] font-[Manrope] px-4">
+      {/* Logo (vide parce que notre chef de groupe ne veut pas CREER un logo) */}
+      <div className="mb-6 w-12 h-12 border-2 border-[#9ACECA] rounded-md bg-transparent" />
+
+      <h1 className="text-3xl sm:text-4xl font-bold text-white mb-8">SE CONNECTER</h1>
+
       <form onSubmit={handleSubmit} className="w-full max-w-xs space-y-4">
-        <input
+        <Input
           type="email"
           placeholder="Adresse mail"
           value={email}
-          onChange={handleEmailChange}
-          className="w-full p-3 bg-black border border-purple-700 rounded-full text-white placeholder-purple-400"
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input
+        <Input
           type="password"
           placeholder="Mot de passe"
           value={password}
-          onChange={handlePasswordChange}
-          className="w-full p-3 bg-black border border-purple-700 rounded-full text-white placeholder-purple-400"
+          onChange={(e) => setPassword(e.target.value)}
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+
+        {error && <p className="text-red-400 text-sm text-center">{error}</p>}
+
+        <div className="flex items-center justify-between text-gray-500 text-sm mt-4">
+          <hr className="w-1/3 border-gray-600" />
+          <span className="mx-2">ou</span>
+          <hr className="w-1/3 border-gray-600" />
+        </div>
+
         <button
           type="submit"
-          className="w-full p-3 rounded-full text-white font-semibold transition-colors duration-300"
-          style={{ backgroundColor: '#E7A9FF' }}
-          onMouseOver={(e) => (e.target.style.backgroundColor = '#C229FF')}
-          onMouseOut={(e) => (e.target.style.backgroundColor = '#E7A9FF')}
+          className="w-full bg-[#9ACECA] text-[#161B21] font-semibold py-2 rounded-full hover:brightness-110 transition-all"
         >
-          Se connecter 
+          Se connecter
         </button>
       </form>
-      <p className="text-sm text-gray-400 mt-4">
-        Vous n'avez pas un compte ?{' '}
-        <a href="/Inscription" className="text-purple-500 font-semibold hover:underline">
-          S'inscrire
+
+      <p className="text-sm text-gray-400 mt-6">
+        Pas encore inscrit ?{' '}
+        <a href="/Inscription" className="text-[#9ACECA] font-semibold hover:underline">
+          S’inscrire
         </a>
       </p>
     </div>
+  );
+}
+
+function Input({ type, placeholder, value, onChange }) {
+  return (
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className="w-full p-3 bg-transparent border border-[#9ACECA] rounded-full text-white placeholder-[#9ACECA] focus:outline-none focus:ring-2 focus:ring-[#9ACECA] transition-all"
+    />
   );
 }
