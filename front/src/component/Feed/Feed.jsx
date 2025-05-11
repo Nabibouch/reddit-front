@@ -5,16 +5,38 @@ import PrimaryButton from '../Button/PrimaryButton';
 const Feed = () => {
 
   const [community, setCommunity] = useState('');
+  const [error, setError] = useState('');
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState('');
 
   const url = import.meta.env.VITE_API_URL;
-    const token = import.meta.env.VITE_API_TOKEN;
+    // const token = import.meta.env.VITE_API_TOKEN;
+  const token = localStorage.getItem('token');
 
 
   useEffect(() => {
+
+    const fetchUser = async () => {
+      
+      if (!token) {
+        setError('Utilisateur non connecté')
+       
+      }
+      try {
+        const res = await axios.post(`${url}/users/me`, {
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        console.log(res)
+        setUser(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     
     const fetchPost = async () => {
       try {
