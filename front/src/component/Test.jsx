@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import Footer from './Footer/Footer';
 
 const Test = () => {
-  const [posts, setPosts] = useState([]);
+ 
+ const [posts, setPosts] = useState([]);
+ const token = import.meta.env.VITE_API_TOKEN;
 
-  const token = import.meta.env.VITE_API_TOKEN;
+
+
 
   useEffect(() => {
 
@@ -28,7 +32,7 @@ const Test = () => {
   return (
     <>
       <h2>POSTS</h2>
-      {posts.map((post) => (
+      {/* {posts.map((post) => (
         <section key={post.id}>
           <h3>{post.title}</h3>
           <p>{post.contenu}</p>
@@ -42,7 +46,7 @@ const Test = () => {
             />
           )}
         </section>
-      ))}
+      ))} */}
     </>
   );
 };
