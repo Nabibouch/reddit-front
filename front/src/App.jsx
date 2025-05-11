@@ -22,12 +22,8 @@ function App() {
   }
   return(
     <>
-      
-      <CreateCommunity />
-      <PrimaryButton title="valider" />
-      <SecondaryButton title="annuler" />
       <CreatePost />
-      <Messagerie />
+      
     </>
   )
 }
