@@ -41,7 +41,7 @@ const Feed = () => {
  
  
   return(
-    <div className='flex flex-col pl-20 gap-2.5 h-[625px] overflow-auto no-scrollbar'>
+    <div className='flex flex-col pl-20 gap-2.5 h-full overflow-auto no-scrollbar'>
       <section className='flex flex-col gap-7 w-[510px]'>
         {posts.map((post) =>{ 
           return(
