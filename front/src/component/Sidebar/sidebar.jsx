@@ -42,9 +42,9 @@ export default function Sidebar() {
                 icon={<Smile size={16} color={iconColor} />} 
                 onClick={() => navigate('/associations')} 
               />
-              <SidebarItem label="Évènements" 
-              icon={<Calendar size={16} color={iconColor} />} 
-              onClick={() => navigate('/evenements')} 
+              <SidebarItem label="Événements" 
+                icon={<Calendar size={16} color={iconColor} />} 
+                onClick={() => navigate('/evenements')} 
               />
               <SidebarItem label="Memes" 
                 icon={<BookOpen size={16} color={iconColor} />} 
