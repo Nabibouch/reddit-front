@@ -2,6 +2,7 @@ import './App.css'
 import DefaultStructure from './component/Default structure/DefaultStructure';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
 import { UserThumb } from './component/UserThumb/UserThumb';
+import { Account } from './component/Account/Account';
 
 function App() {
   
@@ -16,7 +17,7 @@ function App() {
   return(
     <>
       <DefaultStructure>
-        <UserThumb />
+        <Account />
       </DefaultStructure>
 
     </>

@@ -10,7 +10,6 @@ export function UserThumb() {
             const reader = new FileReader()
             reader.onloadend = () => {
                 setPhoto(reader.result)
-                localStorage.setItem("userPhoto", reader.result)
             }
         reader.readAsDataURL(file)
         }
@@ -46,4 +45,3 @@ export function UserThumb() {
         </div>
         )
     }
-

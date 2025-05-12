@@ -2,8 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
-
-
 const CreerProfile = () => {
 
     const [users, setUsers] = useState([]);
@@ -106,7 +104,7 @@ const CreerProfile = () => {
     
     return(
         <>
-            <h1>Créer un new user ?</h1>
+            <h1>Créer un nouveau profil ?</h1>
             {users.map((user) => (
                 <section key={user.id}>
                     <h3>{user.username}</h3>
