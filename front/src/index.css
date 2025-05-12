@@ -40,7 +40,7 @@
   --color-brickred-60: #D08F94;
   --color-brickred-40: #E0B5B7;
   --color-brickred-20: #EFDADB;
-  --color-brickred-10: #F7ECED;
+
 
   --color-darkgreen: #00423D;
   --color-darkgreen-80: #316662;
@@ -73,6 +73,14 @@ body{
   background-color: #161B21;
   color: aliceblue;
   font-family: "Manrope", sans-serif;
+  
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}

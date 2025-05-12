@@ -1,23 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  ThumbsUp,
-  Smile,
-  Calendar,
-  BookOpen,
-  ChevronDown,
-  User,
-} from 'lucide-react';
+import { ThumbsUp, Smile, Calendar, BookOpen, ChevronDown } from 'lucide-react';
 
 export default function Sidebar() {
   const [topicsOpen, setTopicsOpen] = useState(true);
-  const [settingsOpen, setSettingsOpen] = useState(false);
-
+  const [subredditOpen, setSubredditOpen] = useState(false);
   const navigate = useNavigate();
   const iconColor = '#9ACECA';
 
   return (
-    <aside className="w-60 min-h-screen bg-nightblue text-white font-manrope flex flex-col justify-between py-6 px-4 border-r border-r-gray">
+    <aside className="w-60 h-[625px] bg-nightblue text-white font-manrope flex flex-col justify-between py-6 px-4 border-r border-r-gray">
       <div className="space-y-4">
         <div className="space-y-3">
           <SidebarItem label="Home" bold hideIcon onClick={() => navigate('/home')} />
@@ -25,12 +17,13 @@ export default function Sidebar() {
           <SidebarItem label="Message" bold hideIcon onClick={() => navigate('/messages')} />
         </div>
 
-        <div className="mt-6">
+        {/* Section "Communauté officielle" avec une marge réduite */}
+        <div className="mt-2"> {/* Réduction de la marge ici */}
           <div
             onClick={() => setTopicsOpen(!topicsOpen)}
             className="flex items-center justify-between text-sm font-semibold cursor-pointer hover:text-[#9ACECA]"
           >
-            <span>TOPICS</span>
+            <span>Communauté officielle</span>
             <ChevronDown
               size={16}
               className={`transition-transform ${topicsOpen ? 'rotate-180' : ''}`}
@@ -40,45 +33,39 @@ export default function Sidebar() {
           {topicsOpen && (
             <div className="mt-3 space-y-2 ml-3 text-sm text-gray-300">
               <SidebarItem
-               label="Technologies" 
-               icon={<ThumbsUp size={16} color={iconColor} />} 
-               onClick={() => navigate('/technologies')} 
+                label="Technologies" 
+                icon={<ThumbsUp size={16} color={iconColor} />} 
+                onClick={() => navigate('/technologies')} 
               />
               <SidebarItem 
-              label="Associations / BDE" 
-              icon={<Smile size={16} color={iconColor} />} 
-              onClick={() => navigate('/associations')} 
+                label="Associations / BDE" 
+                icon={<Smile size={16} color={iconColor} />} 
+                onClick={() => navigate('/associations')} 
               />
-              <SidebarItem label="Évènements" 
-              icon={<Calendar size={16} color={iconColor} />} 
-              onClick={() => navigate('/evenements')} 
+              <SidebarItem label="Événements" 
+                icon={<Calendar size={16} color={iconColor} />} 
+                onClick={() => navigate('/evenements')} 
               />
               <SidebarItem label="Memes" 
-              icon={<BookOpen size={16} color={iconColor} />} 
-              onClick={() => navigate('/memes')} 
+                icon={<BookOpen size={16} color={iconColor} />} 
+                onClick={() => navigate('/memes')} 
               />
             </div>
           )}
         </div>
-      </div>
 
-      <div className="space-y-2">
-        <div
-          onClick={() => setSettingsOpen(!settingsOpen)}
-          className="flex items-center justify-between text-sm font-semibold cursor-pointer hover:text-[#9ACECA]"
-        >
-          <span>Paramètres</span>
-          <ChevronDown
-            size={16}
-            className={`transition-transform ${settingsOpen ? 'rotate-180' : ''}`}
-          />
-        </div>
-
-        {settingsOpen && (
-          <div className="ml-3 mt-2">
-            <SidebarItem label="Compte" icon={<User size={16} color={iconColor} />} onClick={() => navigate('/compte')} />
+        <div className="mt-2"> 
+          <div
+            onClick={() => setSubredditOpen(!subredditOpen)}
+            className="flex items-center justify-between text-sm font-semibold cursor-pointer hover:text-[#9ACECA]"
+          >
+            <span>Mes subreddits</span>
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${subredditOpen ? 'rotate-180' : ''}`}
+            />
           </div>
-        )}
+        </div>
       </div>
     </aside>
   );
