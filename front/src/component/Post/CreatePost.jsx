@@ -24,23 +24,26 @@ export default function CreatePost() {
     return (
         <div className="bg-[#161B21] p-6 rounded-2xl w-fit">
             <div className='flex flex-col gap-4 p-6 rounded-2xl'>
-                {/* Titre */}
                  <Input titre="Titre" required={true} />
-                    <div className='flex flex-col gap-2'> </div>
-            <div className={`w-[516px] border border-[#9ACECA] px-3 rounded-[50px] h-[200px] flex items-center justify-center relative overflow-hidden ${image ? '' : 'flex-col'}`} onClick={!image ? handleUploadClick : undefined}>
-                {!image && (
-                    <>
-                    <h2 className="text-[#9ACECA]">Add Media</h2>
-                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center cursor-pointer">
-                        <Plus className="text-black w-5 h-5" />
+                    <div className='flex flex-col gap-2'></div>
+                    <div className={`w-[516px] h-[200px] border border-[#9ACECA] px-3 rounded-[50px] relative overflow-hidden flex items-center justify-center ${image ? '' : 'flex-col cursor-pointer'}`} onClick={!image ? handleUploadClick : undefined}>
+                        {image ? (
+                            <>
+                                <img src={image} alt="Preview" className="w-full h-full object-cover rounded-[50px]"/>
+                                <button onClick={handleUploadClick} className="absolute top-2 right-2 bg-white text-black text-xs px-3 py-1 rounded-full shadow hover:bg-gray-200 transition z-10">Changer</button>
+                            </>
+                        ) : (
+                            <>
+                                <h2 className="text-[#9ACECA]">Add Media</h2>
+                                <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center cursor-pointer">
+                                    <Plus className="text-black w-5 h-5" />
+                                </div>
+                            </>
+                        )}
+
+                        <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
                     </div>
-                    </>
-                )}
-                <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
-                {image && (
-                <div className="absolute inset-0 bg-cover bg-center rounded-[50px]" style={{ backgroundImage: `url(${image})` }} />
-                )}
-            </div>
+
 
 
                 <Input titre="Description" required={true} />
