@@ -1,15 +1,20 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import requiredOrNot from '../Input with label/Input'
 import PrimaryButton from '../Button/PrimaryButton' 
+import SecondaryButton from '../Button/SecondaryButton'
 import Input from '../Input with label/Input'
-import { Plus } from 'lucide-react'
+import { Plus, SearchCodeIcon } from 'lucide-react'
 import { useRef } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreatePost() {
     const [image, setImage] = useState(null)
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
     const fileInputRef = useRef(null)
     
+
     const handleUploadClick = () => {
         fileInputRef.current.click()
     }
@@ -21,10 +26,36 @@ export default function CreatePost() {
           setImage(imageUrl) 
         }
       }
+    const handlesubmit = async () => {
+        e.preventDefault();
+        setError('');
+        
+        if (!title || !description) {
+            setError('Veuillez Remplir tous les champs')
+            return
+        }
+        
+        try {
+            const response = await axios.post(
+                'http://localhost:1337/api/post',
+                {title, description, image},
+                { headers: { 'Content-Type': 'application/json'}}
+            );
+            Navigate('/Post');
+        }
+        catch (err) {
+            const message = err.response?.data?.error?.message || 'Erreur inconnue';
+            setError(message)
+        }
+    }
+
+        
+       
+    
     return (
         <div className="bg-[#161B21] p-6 rounded-2xl w-fit">
             <div className='flex flex-col gap-4 p-6 rounded-2xl'>
-                 <Input titre="Titre" required={true} />
+                 <Input titre="Titre" required={true} onChange={(e) => setTitle(e.target.value)}/>
                     <div className='flex flex-col gap-2'></div>
                     <div className={`w-[516px] h-[200px] border border-[#9ACECA] px-3 rounded-[50px] relative overflow-hidden flex items-center justify-center ${image ? '' : 'flex-col cursor-pointer'}`} onClick={!image ? handleUploadClick : undefined}>
                         {image ? (
@@ -46,15 +77,16 @@ export default function CreatePost() {
 
 
 
-                <Input titre="Description" required={true} />
+                <Input titre="Description" required={true} onChange={(e) => setDescription(e.target.value)} />
 
                 <div className='flex gap-4'>
-                    <PrimaryButton name="Annuler" />
+                    <SecondaryButton name="Annuler" />
                     <PrimaryButton name="Poster" />
                 </div>
             </div>
         </div>
     )
 }
+
 
 

@@ -31,7 +31,7 @@ export default function SignIn() {
         }
       )
 
-      navigate('/Feed')
+      navigate('/homepage')
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue'
       setError(message)
