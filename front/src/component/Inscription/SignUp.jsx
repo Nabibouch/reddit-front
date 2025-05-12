@@ -79,7 +79,7 @@ export default function SignUp() {
 
       localStorage.setItem('jwt', response.data.jwt);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      navigate('/Feed');
+      navigate('/Homepage');
       toast.success('Inscription réussie!');
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue';

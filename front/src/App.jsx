@@ -9,6 +9,7 @@ import Footer from './component/Footer/Footer';
 import Input from './component/Input with label/Input';
 import PrimaryButton from './component/Button/PrimaryButton';
 import SecondaryButton from './component/Button/SecondaryButton';
+import LoginRedirect from './component/Redirect/Redirect';
 
 function App() {
   return (
@@ -16,9 +17,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Connexion" element={<SignIn />} />
         <Route path="/Inscription" element={<SignUp />} />
-        <Route path="/Feed" element={<Feed />} />
+        <Route path="/Feed" element={<Homepage />} />
         <Route path="/CreateCommunity" element={<CreateCommunity />} />
         <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
+        <Route path="/redirect" element={<LoginRedirect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
   );
