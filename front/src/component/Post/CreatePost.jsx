@@ -27,23 +27,27 @@ export default function CreatePost() {
                 {/* Titre */}
                  <Input titre="Titre" required={true} />
                     <div className='flex flex-col gap-2'> </div>
-            
-                <div className='w-[516px] border border-[#9ACECA] px-3 rounded-[50px] h-[200px] flex items-center justify-center'>
+            <div className={`w-[516px] border border-[#9ACECA] px-3 rounded-[50px] h-[200px] flex items-center justify-center relative overflow-hidden ${image ? '' : 'flex-col'}`} onClick={!image ? handleUploadClick : undefined}>
+                {!image && (
+                    <>
                     <h2 className="text-[#9ACECA]">Add Media</h2>
-                    <div  onClick={handleUploadClick} className="w-5 h- rounded-full bg-white flex items-center justify-center cursor-pointer">
-                        < Plus className="text-black w-5 h-5" />
+                    <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center cursor-pointer">
+                        <Plus className="text-black w-5 h-5" />
                     </div>
-                    <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" onChange={handleFileChange}/>
-                    {image && (
-                    <div className="w-full h-[150px] mt-4 bg-cover bg-center rounded-[50px]" style={{ backgroundImage: `url(${image})` }} />
-                    )}
-                </div>
+                    </>
+                )}
+                <input type="file" accept="image/*,video/*" ref={fileInputRef} className="hidden" onChange={handleFileChange} />
+                {image && (
+                <div className="absolute inset-0 bg-cover bg-center rounded-[50px]" style={{ backgroundImage: `url(${image})` }} />
+                )}
+            </div>
+
 
                 <Input titre="Description" required={true} />
 
                 <div className='flex gap-4'>
-                    <PrimaryButton title="Annuler" />
-                    <PrimaryButton title="Poster" />
+                    <PrimaryButton name="Annuler" />
+                    <PrimaryButton name="Poster" />
                 </div>
             </div>
         </div>
