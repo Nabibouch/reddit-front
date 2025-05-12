@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import SignIn from './Connexion/SignIn';
-import SignUp from './Inscription/SignUp';
-import Feed from './Feed/Feed';
+import SignIn from './component/Connexion/SignIn';
+import SignUp from './component/Inscription/SignUp';
+import Feed from './component/Feed/Feed';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
 import Footer from './component/Footer/Footer';
 import Input from './component/Input with label/Input';
