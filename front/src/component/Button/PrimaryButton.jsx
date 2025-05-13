@@ -1,7 +1,15 @@
-const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
-    return (
+const PrimaryButton = ({ name, use = () => {}, use2 = () => {}, disabled = false }) => {
+  
+  const handleClick = () => {
+
+    use();
+    use2();
+
+  }
+  
+  return (
       <button
-        onClick={onClick}
+        onClick={handleClick}
         disabled={disabled}
         className={`
           flex
@@ -24,7 +32,7 @@ const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
           cursor-pointer
         `}
       >
-        {title}
+        {name}
       </button>
     );
   };
