@@ -18,7 +18,7 @@ export default function SignIn() {
     }
 
     try {
-      await axios.post(
+      const response = await axios.post(
         'http://localhost:1337/api/auth/local',
         {
           identifier: email,
@@ -30,6 +30,8 @@ export default function SignIn() {
           },
         }
       )
+      const token = response.data.jwt
+      localStorage.setItem('token', token);
 
       navigate('/homepage')
     } catch (err) {

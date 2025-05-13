@@ -1,14 +1,23 @@
-const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
-    return (
+const PrimaryButton = ({ name, use = () => {}, use2 = () => {}, disabled = false }) => {
+  
+  const handleClick = () => {
+
+    use();
+    use2();
+
+  }
+  
+  return (
       <button
-        onClick={onClick}
+        onClick={handleClick}
         disabled={disabled}
         className={`
+          flex
           bg-[rgb(103,181,175)] 
           text-black 
-          font-semibold
-          px-6 py-2 
-          w-32
+          justify-center
+          items-center
+          px-2
           rounded-full
           border border-transparent 
           shadow-sm
@@ -23,7 +32,7 @@ const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
           cursor-pointer
         `}
       >
-        {title}
+        {name}
       </button>
     );
   };
