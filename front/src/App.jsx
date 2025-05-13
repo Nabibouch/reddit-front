@@ -1,36 +1,27 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import SignIn from './component/Connexion/SignIn';
-import SignUp from './component/Inscription/SignUp';
-import DefaultStructure from './component/Default structure/DefaultStructure'
-import Feed from './component/Feed/Feed'
-import CreateCommunity from './component/CreateComunity/CreateComunity'
-import Footer from './component/Footer/Footer'
-import Input from './component/Input with label/Input'
-import PrimaryButton from './component/Button/PrimaryButton'
-import SecondaryButton from './component/Button/SecondaryButton'
-import LoginRedirect from './component/Redirect/Redirect'
-import Messagerie from './component/Message/message';
+import DefaultStructure from './component/Default structure/DefaultStructure';
+import Feed from './component/Feed/Feed';
+import { Route, Routes } from 'react-router-dom';
 import Post from './component/Post/Post';
-
+import CreateCommunity from './component/CreateComunity/CreateComunity';
 
 function App() {
-  return (
+  
+  // const bg_color = "bg-[rgb(0_0_255)]";
+  // const border_color = "border-[rgb(0_255_255)]";
+  // const blue = "rgb(0_0_255)";
+
+
+  return(
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Connexion" element={<SignIn />} />
-        <Route path="/Inscription" element={<SignUp />} />
-        <Route path="/homepage" element={<DefaultStructure><Feed /></DefaultStructure> } />
-        <Route path="/subreddit" element={<DefaultStructure><CreateCommunity /></DefaultStructure> } />
-        <Route path="/CreateCommunity" element={<CreateCommunity />} />
-        <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
-        <Route path="/redirect" element={<LoginRedirect />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/Message" element={<Messagerie />} />
-        <Route path="/post/:documentId" element={<Post />} />
-       </Routes>
-  );
+        <Route path='/connexion' element={<SignIn />} />
+        <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
+        <Route path='post/:id' element={<DefaultStructure><Post /></DefaultStructure>} />
+        <Route path='create/:id' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
+      </Routes>
+    )
 }
 
 
@@ -57,5 +48,7 @@ const NotFound = () => (
     <h1 className="text-2xl">404 - Page non trouvée</h1>
   </div>
 );
+
+
 
 export default App;

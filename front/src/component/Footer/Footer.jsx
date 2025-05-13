@@ -2,7 +2,7 @@
 const Footer = () => {
 
     return(
-        <footer className="flex flex-col h-[40px]">
+        <footer className="flex flex-col h-full justify-end items-end">
             <div className="footer-container bg-nightblue">
                 <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-sm text-center md:text-left text-white ">&copy; Malhetic 2025. All rights reserved.</p>
