@@ -3,6 +3,7 @@ import SignIn from './component/Connexion/SignIn';
 import DefaultStructure from './component/Default structure/DefaultStructure';
 import Feed from './component/Feed/Feed';
 import { Route, Routes } from 'react-router-dom';
+import Post from './component/Post/Post';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/connexion' element={<SignIn />} />
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
+        <Route path='/homepage' element={<DefaultStructure><Post /></DefaultStructure>} />
       </Routes>
     )
 }
