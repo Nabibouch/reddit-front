@@ -1,27 +1,24 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import SignIn from './component/Connexion/SignIn';
-import SignUp from './component/Inscription/SignUp';
+import DefaultStructure from './component/Default structure/DefaultStructure';
 import Feed from './component/Feed/Feed';
-import CreateCommunity from './component/CreateComunity/CreateComunity';
-import Footer from './component/Footer/Footer';
-import Input from './component/Input with label/Input';
-import PrimaryButton from './component/Button/PrimaryButton';
-import SecondaryButton from './component/Button/SecondaryButton';
+import { Route, Routes } from 'react-router-dom';
+import Post from './component/Post/Post';
 
 function App() {
-  return (
+  
+  // const bg_color = "bg-[rgb(0_0_255)]";
+  // const border_color = "border-[rgb(0_255_255)]";
+  // const blue = "rgb(0_0_255)";
+
+
+  return(
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Connexion" element={<SignIn />} />
-        <Route path="/Inscription" element={<SignUp />} />
-        <Route path="/Feed" element={<Feed />} />
-        <Route path="/CreateCommunity" element={<CreateCommunity />} />
-        <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
-        <Route path="*" element={<NotFound />} />
+        <Route path='/connexion' element={<SignIn />} />
+        <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
+        <Route path='/homepage' element={<DefaultStructure><Post /></DefaultStructure>} />
       </Routes>
-  );
+    )
 }
 
 const Home = () => (

@@ -5,16 +5,38 @@ import PrimaryButton from '../Button/PrimaryButton';
 const Feed = () => {
 
   const [community, setCommunity] = useState('');
+  const [error, setError] = useState('');
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState('');
 
-  const url = import.meta.env.VITE_API_URL;
-    const token = import.meta.env.VITE_API_TOKEN;
+  const url = import.meta.env.VITE_API_URL ;
+  console.log(url)
+  const token = localStorage.getItem('token');
 
 
   useEffect(() => {
+
+    const fetchUser = async () => {
+      
+      if (!token) {
+        setError('Utilisateur non connecté')
+        return 
+      }
+      try {
+        const res = await axios.get(`${url}/users/me`, {
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        console.log(res.data)
+        setUser(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     
     const fetchPost = async () => {
       try {
@@ -26,13 +48,12 @@ const Feed = () => {
         const data = Brutedata.data.data
         console.log(data);
         setPosts(data);
-        setImage(data.Photo)
-        console.log(data.Photo);
         
       } catch (error) {
         console.log(error)
       }
     }
+    fetchUser()
     fetchPost();
 
   },[]);
@@ -41,15 +62,15 @@ const Feed = () => {
  
  
   return(
-    <div className='flex flex-col pl-20 gap-2.5 h-[625px] overflow-auto no-scrollbar'>
-      <section className='flex flex-col gap-7 w-[510px]'>
+    <div className='flex flex-col pl-20 gap-2.5 h-full overflow-auto no-scrollbar'>
+      <section className='flex flex-col gap-15 w-[510px]'>
         {posts.map((post) =>{ 
           return(
         
           <div key={post.id} className='flex flex-col gap-[10px] bg-nightblue hover:brightness-115'>
             <div className='flex flex-row h-[25px] justify-between'>
             <h3 className='text-[16px]'>{post.sub_reddit?.name ?? "Aucune commu"}</h3>
-            <PrimaryButton name="rejoindre" />
+            <PrimaryButton title="Rejoindre" />
             </div>
             <h2 className='text-[20px]'>{post.title}</h2>
             {post.Photo ? (
