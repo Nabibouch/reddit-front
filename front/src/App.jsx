@@ -24,12 +24,14 @@ function App() {
     )
 }
 
+
 const Home = () => (
   <div className="text-white text-center mt-10">
     <h1 className="text-4xl">Bienvenue sur l'Accueil</h1>
     <p className="text-gray-400">Choisissez une page à visiter</p>
   </div>
 );
+
 
 const TestUI = () => (
   <div className="p-10 flex flex-col gap-4">
@@ -39,6 +41,7 @@ const TestUI = () => (
     <Footer title="footer" />
   </div>
 );
+
 
 const NotFound = () => (
   <div className="text-white text-center mt-10">

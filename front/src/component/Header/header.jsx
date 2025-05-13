@@ -7,7 +7,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const headerIcons = [
-    { name: 'home', icon: <Home size={20} />, route: '/home' },
+    { name: 'home', icon: <Home size={20} />, route: '/homepage' },
     { name: 'bell', icon: <Bell size={20} />, route: '/notifications' },
     { name: 'chat', icon: <MessageCircle size={20} />, route: '/messages' },
   ];

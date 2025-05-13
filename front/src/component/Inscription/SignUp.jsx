@@ -194,6 +194,22 @@ export default function SignUp() {
         </button>
 
         <button
+          type="button"
+          onClick={handleGoogleSignUp}
+          disabled={loadingGoogle}
+          className={`w-full bg-[#20252C] border border-[#9ACECA] text-white font-semibold py-2 rounded-full transition-all flex items-center justify-center gap-3 group hover:bg-[#2C333A] ${
+            loadingGoogle ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.01]'
+          }`}
+        >
+          <div className="text-lg sm:text-xl transition-transform group-hover:scale-110">
+            <FcGoogle />
+          </div>
+          <span className="text-sm sm:text-base">
+            {loadingGoogle ? 'Redirection...' : "S'inscrire avec Google"}
+          </span>
+        </button>
+
+        <button
           type="submit"
           className={`w-full bg-[#9ACECA] text-[#161B21] font-semibold py-2 rounded-full hover:brightness-110 transition-all ${
             isLoading ? 'opacity-50 cursor-not-allowed' : ''

@@ -37,11 +37,6 @@ export default function CreatePost() {
       return;
     }
 
-    // formData.append('files.image', fileInputRef.current.files[0]);
-    // formData.append('data', JSON.stringify({ title, description }));
-
-
-
   
   
     try {
