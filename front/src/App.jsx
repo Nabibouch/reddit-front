@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import SignIn from './component/Connexion/SignIn';
 import SignUp from './component/Inscription/SignUp';
@@ -9,6 +9,7 @@ import Footer from './component/Footer/Footer';
 import Input from './component/Input with label/Input';
 import PrimaryButton from './component/Button/PrimaryButton';
 import SecondaryButton from './component/Button/SecondaryButton';
+import ProfilePage from './component/ProfilPage/ProfilPage';
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Connexion" element={<SignIn />} />
         <Route path="/Inscription" element={<SignUp />} />
+        <Route path='/users/:id' element={<ProfilePage/>}/>
+        {/* <Route path="/Posts" element={<Posts />} />
+        <Route path="/Comments" element={<Comments />} />
+        <Route path="/Saved" element={<Saved />} /> */}
         <Route path="/Feed" element={<Feed />} />
         <Route path="/CreateCommunity" element={<CreateCommunity />} />
         <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
