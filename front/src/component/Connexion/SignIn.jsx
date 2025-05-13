@@ -22,6 +22,7 @@ export default function SignIn() {
     }
 
     try {
+
       const res = await axios.post(
         'http://localhost:1337/api/auth/local',
         {

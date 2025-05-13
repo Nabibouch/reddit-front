@@ -2,20 +2,46 @@ import { useEffect, useState } from 'react'
 import axios from "axios";
 import PrimaryButton from '../Button/PrimaryButton';
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Feed = () => {
 
   const [community, setCommunity] = useState('');
+  const [error, setError] = useState('');
   const [date, setDate] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
   const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState('');
+  const [documentId, setDocumentId] = useState('');
 
   const url = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem('jwt');
 
+  const navigate = useNavigate();
 
+
+  
   useEffect(() => {
+    
+    const fetchUser = async () => {
+      
+      if (!token) {
+        setError('Utilisateur non connecté')
+        return 
+      }
+      try {
+        const res = await axios.get(`${url}/users/me`, {
+          headers : {
+            Authorization : `Bearer ${token}`
+          }
+        })
+        console.log(res.data)
+        setUser(res.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
     
     const fetchPost = async () => {
       try {
@@ -27,21 +53,38 @@ const Feed = () => {
         const data = Brutedata.data.data
         console.log(data);
         setPosts(data);
-        setImage(data.Photo)
-        console.log(data.Photo);
+        setDocumentId(data.documentId)
         
       } catch (error) {
         console.log(error)
       }
     }
+    fetchUser()
     fetchPost();
-
+    
+    
   },[]);
+  
+  const redirection = () => {
+  
+    navigate(`/post/${documentId}`)
+  }
+  
+  const joinCommunity = async () => {
+    try {
+      
+      const response = await axios.put
 
- 
- 
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  }
+  
  
   return(
+
     <div className='flex flex-col pl-20 gap-2.5 h-[625px] overflow-auto no-scrollbar'>
       <section className='flex flex-col gap-7 w-[510px]'>
       {posts.map((post) => (
@@ -60,6 +103,7 @@ const Feed = () => {
       </div>
     </Link>
   ))}        
+
       </section>
     </div>
   )

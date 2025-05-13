@@ -4,18 +4,20 @@ const PrimaryButton = ({ name, use = () => {}, use2 = () => {}, disabled = false
 
     use();
     use2();
-  }
 
-    return (
+  }
+  
+  return (
       <button
         onClick={handleClick}
         disabled={disabled}
         className={`
+          flex
           bg-[rgb(103,181,175)] 
           text-black 
-          font-semibold
-          px-6 py-2 
-          w-32
+          justify-center
+          items-center
+          px-2
           rounded-full
           border border-transparent 
           shadow-sm
