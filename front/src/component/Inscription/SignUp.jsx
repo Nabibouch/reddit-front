@@ -91,6 +91,7 @@ export default function SignUp() {
     }
   };
 
+
   const handleGoogleSignUp = () => {
     setLoadingGoogle(true);
     window.location.href = 'http://localhost:1337/api/connect/google';

@@ -8,12 +8,12 @@ const DefaultStructure = ({children}) => {
     return(
         <main className="flex flex-col h-[625px]">
             <Header />
-                <section className="flex flex-row">
+                <section className="flex flex-row h-full">
                     <Sidebar />
                     <section className="flex pt-4">
                         {children}
+                    <Footer />
                     </section>
-                <Footer />
                 </section>
         </main>
     )
