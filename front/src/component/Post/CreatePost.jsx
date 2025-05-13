@@ -13,6 +13,8 @@ export default function CreatePost() {
   const [description, setDescription] = useState('')
   const fileInputRef = useRef(null)
   const [error, setError] = useState('')
+  const [file, setFile] = useState(null);
+
 
   const token = import.meta.env.VITE_API_TOKEN;
 
@@ -21,12 +23,14 @@ export default function CreatePost() {
   }
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0]
-    if (file) {
-      const imageUrl = URL.createObjectURL(file)
-      setImage(imageUrl)
+    const selectedFile = e.target.files[0];
+        if (selectedFile) {
+        const imageUrl = URL.createObjectURL(selectedFile);
+        setImage(imageUrl);
+        setFile(selectedFile);
+        }
     }
-  }
+
 
   const handlesubmit = async (e) => {
     e.preventDefault();
@@ -36,19 +40,26 @@ export default function CreatePost() {
       setError('Veuillez remplir tous les champs');
       return;
     }
-
-    // formData.append('files.image', fileInputRef.current.files[0]);
-    // formData.append('data', JSON.stringify({ title, description }));
-
-
-
-  
-  
+    
+    
     try {
+        const formData = new FormData();
+        formData.append('files', file);
+        
+        const uploadRes = await axios.post('http://localhost:1337/api/upload', formData, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+        const uploadedFile = uploadRes.data[0];
+        const imageId = uploadedFile.id;
+
         const data = {
             data : {
                 title : title,
-                description : description
+                description : description,
+                image : imageId,
             }
         }
         const response = await axios.post('http://localhost:1337/api/posts', data, {
@@ -56,6 +67,9 @@ export default function CreatePost() {
                 Authorization : `Bearer ${token}`
         },
       });
+
+      
+
       navigate('/Post');
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue';
