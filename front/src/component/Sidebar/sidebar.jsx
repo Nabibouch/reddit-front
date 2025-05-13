@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ThumbsUp, Smile, Calendar, BookOpen, ChevronDown } from 'lucide-react';
+import { ThumbsUp, Smile, Calendar, BookOpen, ChevronDown, Plus } from 'lucide-react';
 
 export default function Sidebar() {
   const [topicsOpen, setTopicsOpen] = useState(true);
@@ -65,6 +65,18 @@ export default function Sidebar() {
               className={`transition-transform ${subredditOpen ? 'rotate-180' : ''}`}
             />
           </div>
+        
+          {subredditOpen && (
+            <div className="mt-3 ml-3 space-y-2 text-sm text-gray-300">
+              <div
+                onClick={() => navigate('/create-subreddit')}
+                className="flex items-center space-x-2 px-2 py-1 rounded hover:bg-white/10 cursor-pointer transition"
+              >
+                <Plus size={16} color={iconColor} />
+                <span>Créer Subreddit</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </aside>

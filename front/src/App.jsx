@@ -6,6 +6,7 @@ import Feed from './component/Feed/Feed';
 import { Route, Routes } from 'react-router-dom';
 import Post from './component/Post/Post';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
+import Sidebar from './component/Sidebar/sidebar';
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
         <Route path='post/:id' element={<DefaultStructure><Post /></DefaultStructure>} />
         <Route path='create/:id' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
+        <Route path='/sidebar' element={<Sidebar />} />
       </Routes>
     )
 }
