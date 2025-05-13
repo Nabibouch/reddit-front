@@ -18,7 +18,7 @@ function App() {
         <Route path='/connexion' element={<SignIn />} />
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
         <Route path='post/:id' element={<DefaultStructure><Post /></DefaultStructure>} />
-        <Route path='create/:id' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
+        <Route path='create' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
       </Routes>
     )
 }

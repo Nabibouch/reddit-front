@@ -32,6 +32,7 @@ export default function SignIn() {
       )
       const token = response.data.jwt
       localStorage.setItem('token', token);
+      localStorage.setItem('user',JSON.stringify(response.data.user));
 
       navigate('/homepage')
     } catch (err) {

@@ -19,6 +19,7 @@ const CreateCommunity = () => {
 
     const url = import.meta.env.VITE_API_URL;
     const token = import.meta.env.VITE_API_TOKEN;
+    const user_token = localStorage.getItem('token'); 
 
     const choose = (topic) => {
         const alreadyChoosed = choosedTopics.find((t) => t.id === topic.id);
@@ -49,7 +50,7 @@ const CreateCommunity = () => {
         try {
             const response = await axios.post(`${url}/sub-reddits`, data, {
                 headers : {
-                    Authorization : `Bearer ${token}`
+                    Authorization : `Bearer ${user_token}`
                 }
             })
             console.log("envoyé ", response);
