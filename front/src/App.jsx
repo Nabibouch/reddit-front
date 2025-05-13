@@ -5,13 +5,14 @@ import SignIn from './component/Connexion/SignIn';
 import SignUp from './component/Inscription/SignUp';
 import DefaultStructure from './component/Default structure/DefaultStructure'
 import Feed from './component/Feed/Feed'
-import CreateCommunity from './component/CreateComunity/CreateComunity';
-import Footer from './component/Footer/Footer';
-import Input from './component/Input with label/Input';
-import PrimaryButton from './component/Button/PrimaryButton';
-import SecondaryButton from './component/Button/SecondaryButton';
-import LoginRedirect from './component/Redirect/Redirect';
-
+import CreateCommunity from './component/CreateComunity/CreateComunity'
+import Footer from './component/Footer/Footer'
+import Input from './component/Input with label/Input'
+import PrimaryButton from './component/Button/PrimaryButton'
+import SecondaryButton from './component/Button/SecondaryButton'
+import LoginRedirect from './component/Redirect/Redirect'
+import Messagerie from './component/Message/message';
+import Post from './component/Post/Post';
 
 
 function App() {
@@ -21,13 +22,17 @@ function App() {
         <Route path="/Connexion" element={<SignIn />} />
         <Route path="/Inscription" element={<SignUp />} />
         <Route path="/homepage" element={<DefaultStructure><Feed /></DefaultStructure> } />
+        <Route path="/subreddit" element={<DefaultStructure><CreateCommunity /></DefaultStructure> } />
         <Route path="/CreateCommunity" element={<CreateCommunity />} />
         <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
         <Route path="/redirect" element={<LoginRedirect />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        <Route path="/Message" element={<Messagerie />} />
+        <Route path="/post/:documentId" element={<Post />} />
+       </Routes>
   );
 }
+
 
 const Home = () => (
   <div className="text-white text-center mt-10">
@@ -35,6 +40,7 @@ const Home = () => (
     <p className="text-gray-400">Choisissez une page à visiter</p>
   </div>
 );
+
 
 const TestUI = () => (
   <div className="p-10 flex flex-col gap-4">
@@ -44,6 +50,7 @@ const TestUI = () => (
     <Footer title="footer" />
   </div>
 );
+
 
 const NotFound = () => (
   <div className="text-white text-center mt-10">

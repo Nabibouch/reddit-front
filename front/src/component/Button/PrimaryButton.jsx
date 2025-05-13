@@ -1,7 +1,14 @@
-const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
+const PrimaryButton = ({ name, use = () => {}, use2 = () => {}, disabled = false }) => {
+  
+  const handleClick = () => {
+
+    use();
+    use2();
+  }
+
     return (
       <button
-        onClick={onClick}
+        onClick={handleClick}
         disabled={disabled}
         className={`
           bg-[rgb(103,181,175)] 
@@ -23,7 +30,7 @@ const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
           cursor-pointer
         `}
       >
-        {title}
+        {name}
       </button>
     );
   };

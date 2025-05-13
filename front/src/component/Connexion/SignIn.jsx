@@ -85,7 +85,6 @@ export default function SignIn() {
           <hr className="w-1/3 border-gray-600" />
         </div>
 
-        {/* ✅ Bouton Google avec icône react-icons */}
         <button
           type="button"
           onClick={handleGoogleLogin}

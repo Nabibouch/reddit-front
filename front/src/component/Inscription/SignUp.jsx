@@ -175,7 +175,6 @@ export default function SignUp() {
           <hr className="w-1/3 border-gray-600" />
         </div>
 
-        {/* 🔐 Bouton inscription avec Google */}
         <button
           type="button"
           onClick={handleGoogleSignUp}
