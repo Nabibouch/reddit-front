@@ -14,6 +14,8 @@ export default function CreatePost() {
   const fileInputRef = useRef(null)
   const [error, setError] = useState('')
 
+  const token = import.meta.env.VITE_API_TOKEN;
+
   const handleUploadClick = () => {
     fileInputRef.current.click()
   }
@@ -26,36 +28,32 @@ export default function CreatePost() {
     }
   }
 
-
-  
   const handlesubmit = async (e) => {
     e.preventDefault();
     setError('');
   
-    if (!title || !description || !fileInputRef.current.files[0]) {
+    if (!title || !description) {
       setError('Veuillez remplir tous les champs');
       return;
     }
-    
-    const imageId = uploadData[0].id
-    // const formData = new FormData();
+
     // formData.append('files.image', fileInputRef.current.files[0]);
     // formData.append('data', JSON.stringify({ title, description }));
 
-    const data = {
-        data : {
-            title : title,
-            description : description,
-            topics: imageId,
-        }
-    }
+
 
   
   
     try {
-      const response = await axios.post('http://localhost:1337/api/posts', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
+        const data = {
+            data : {
+                title : title,
+                description : description
+            }
+        }
+        const response = await axios.post('http://localhost:1337/api/posts', data, {
+            headers: {
+                Authorization : `Bearer ${token}`
         },
       });
       navigate('/Post');
@@ -65,6 +63,8 @@ export default function CreatePost() {
       console.error('Erreur détaillée :', err.response?.data);
     }
   };
+
+  
   
 
   return (
