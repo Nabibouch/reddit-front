@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Eye, EyeOff } from 'lucide-react'; 
+import { FcGoogle } from 'react-icons/fc';
 import './SignUp.css';
 
 export default function SignUp() {
@@ -14,6 +15,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingGoogle, setLoadingGoogle] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -79,7 +81,7 @@ export default function SignUp() {
 
       localStorage.setItem('jwt', response.data.jwt);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      navigate('/Homepage');
+      navigate('/homepage');
       toast.success('Inscription réussie!');
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue';
@@ -87,6 +89,11 @@ export default function SignUp() {
       setIsLoading(false);
       toast.error(message);
     }
+  };
+
+  const handleGoogleSignUp = () => {
+    setLoadingGoogle(true);
+    window.location.href = 'http://localhost:1337/api/connect/google';
   };
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
@@ -167,6 +174,23 @@ export default function SignUp() {
           <span className="mx-2">OU</span>
           <hr className="w-1/3 border-gray-600" />
         </div>
+
+        {/* 🔐 Bouton inscription avec Google */}
+        <button
+          type="button"
+          onClick={handleGoogleSignUp}
+          disabled={loadingGoogle}
+          className={`w-full bg-[#20252C] border border-[#9ACECA] text-white font-semibold py-2 rounded-full transition-all flex items-center justify-center gap-3 group hover:bg-[#2C333A] ${
+            loadingGoogle ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.01]'
+          }`}
+        >
+          <div className="text-lg sm:text-xl transition-transform group-hover:scale-110">
+            <FcGoogle />
+          </div>
+          <span className="text-sm sm:text-base">
+            {loadingGoogle ? 'Redirection...' : "S'inscrire avec Google"}
+          </span>
+        </button>
 
         <button
           type="submit"

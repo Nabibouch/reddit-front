@@ -11,7 +11,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
 
   const url = import.meta.env.VITE_API_URL;
-    const token = import.meta.env.VITE_API_TOKEN;
+  const token = localStorage.getItem('token');
 
 
   useEffect(() => {

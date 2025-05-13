@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Eye, EyeOff } from 'lucide-react'
+import { FcGoogle } from 'react-icons/fc' // ✅ Icône Google
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -9,6 +10,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [loadingGoogle, setLoadingGoogle] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -35,7 +37,7 @@ export default function SignIn() {
 
       localStorage.setItem('jwt', res.data.jwt)
       localStorage.setItem('user', JSON.stringify(res.data.user))
-      navigate('/Feed')
+      navigate('/homepage')
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue'
       setError(message)
@@ -43,6 +45,7 @@ export default function SignIn() {
   }
 
   const handleGoogleLogin = () => {
+    setLoadingGoogle(true)
     window.location.href = 'http://localhost:1337/api/connect/google'
   }
 
@@ -82,13 +85,21 @@ export default function SignIn() {
           <hr className="w-1/3 border-gray-600" />
         </div>
 
+        {/* ✅ Bouton Google avec icône react-icons */}
         <button
           type="button"
           onClick={handleGoogleLogin}
-          className="w-full bg-[#4285F4] text-white font-semibold py-2 rounded-full hover:brightness-110 transition-all flex items-center justify-center gap-2"
+          disabled={loadingGoogle}
+          className={`w-full bg-[#20252C] border border-[#9ACECA] text-white font-semibold py-2 rounded-full transition-all flex items-center justify-center gap-3 group hover:bg-[#2C333A] ${
+            loadingGoogle ? 'opacity-70 cursor-not-allowed' : 'hover:scale-[1.01]'
+          }`}
         >
-          <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-          Se connecter avec Google
+          <div className="text-lg sm:text-xl transition-transform group-hover:scale-110">
+            <FcGoogle />
+          </div>
+          <span className="text-sm sm:text-base">
+            {loadingGoogle ? 'Redirection...' : 'Se connecter avec Google'}
+          </span>
         </button>
 
         <button
