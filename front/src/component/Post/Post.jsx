@@ -56,7 +56,7 @@ const handleComment = async () => {
         <h2 className='text-[20px]'>{post.title}</h2>
         {post.Photo?.[0] ? (
           <img
-            src={`http://localhost:1337${post.Photo[0].formats.small.url}`}
+            src={`${post.Photo[0].formats.thumbnail.url}`}
             alt="post"
           />
         ) : (

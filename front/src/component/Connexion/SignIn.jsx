@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Eye, EyeOff } from 'lucide-react'
-import { FcGoogle } from 'react-icons/fc' // ✅ Icône Google
+import { FcGoogle } from 'react-icons/fc' 
+
 
 export default function SignIn() {
   const navigate = useNavigate()
@@ -11,6 +12,8 @@ export default function SignIn() {
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loadingGoogle, setLoadingGoogle] = useState(false)
+
+  const url = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -24,7 +27,7 @@ export default function SignIn() {
     try {
 
       const res = await axios.post(
-        'http://localhost:1337/api/auth/local',
+        `${url}/auth/local`,
         {
           identifier: email,
           password,
@@ -35,9 +38,7 @@ export default function SignIn() {
           },
         }
       )
-      const token = response.data.jwt
-      localStorage.setItem('token', token);
-      localStorage.setItem('user',JSON.stringify(response.data.user));
+      
 
       localStorage.setItem('jwt', res.data.jwt)
       localStorage.setItem('user', JSON.stringify(res.data.user))
@@ -50,7 +51,7 @@ export default function SignIn() {
 
   const handleGoogleLogin = () => {
     setLoadingGoogle(true)
-    window.location.href = 'http://localhost:1337/api/connect/google'
+    window.location.href = `${url}/connect/google`
   }
 
   return (

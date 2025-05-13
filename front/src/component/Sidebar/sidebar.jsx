@@ -12,7 +12,7 @@ export default function Sidebar() {
     <aside className="w-60 h-full bg-nightblue text-white font-manrope flex flex-col justify-between py-6 px-4 border-r border-r-gray">
       <div className="space-y-4">
         <div className="space-y-3">
-          <SidebarItem label="Home" bold hideIcon onClick={() => navigate('/home')} />
+          <SidebarItem label="Home" bold hideIcon onClick={() => navigate('/homepage')} />
           <SidebarItem label="Explorer" bold hideIcon onClick={() => navigate('/explorer')} />
           <SidebarItem label="Message" bold hideIcon onClick={() => navigate('/messages')} />
         </div>
