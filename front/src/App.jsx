@@ -4,6 +4,7 @@ import DefaultStructure from './component/Default structure/DefaultStructure';
 import Feed from './component/Feed/Feed';
 import { Route, Routes } from 'react-router-dom';
 import Post from './component/Post/Post';
+import CreateCommunity from './component/CreateComunity/CreateComunity';
 
 function App() {
   
@@ -16,7 +17,8 @@ function App() {
       <Routes>
         <Route path='/connexion' element={<SignIn />} />
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
-        <Route path='/homepage' element={<DefaultStructure><Post /></DefaultStructure>} />
+        <Route path='post/:id' element={<DefaultStructure><Post /></DefaultStructure>} />
+        <Route path='create/:id' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
       </Routes>
     )
 }

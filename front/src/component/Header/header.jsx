@@ -12,6 +12,8 @@ export default function Header() {
     { name: 'chat', icon: <MessageCircle size={20} />, route: '/messages' },
   ];
 
+  
+
   const iconClasses = (iconName) =>
     `relative group p-2 rounded-full transition-all duration-200 ease-in-out 
     ${activeIcon === iconName ? 'bg-[#cee6e5]/20 text-[#cee6e5]' : 'hover:bg-white/10 text-white'}`;
