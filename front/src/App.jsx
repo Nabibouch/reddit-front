@@ -6,6 +6,8 @@ import Feed from './component/Feed/Feed';
 import { Route, Routes } from 'react-router-dom';
 import Post from './component/Post/Post';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
+import ProfilePage from './component/ProfilPage/ProfilPage';
+import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
 function App() {
   
@@ -20,9 +22,13 @@ function App() {
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
         <Route path='post/:id' element={<DefaultStructure><Post /></DefaultStructure>} />
         <Route path='create/:id' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
+        <Route path='/users/:id' element={<ProfilePage/>}/>
+        <Route path='/dashboard' element={<ProtectedRoute><DefaultStructure><ProfilPage /></DefaultStructure></ProtectedRoute>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     )
 }
+
 
 
 const Home = () => (
@@ -48,7 +54,6 @@ const NotFound = () => (
     <h1 className="text-2xl">404 - Page non trouvée</h1>
   </div>
 );
-
 
 
 export default App;
