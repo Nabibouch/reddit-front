@@ -1,4 +1,5 @@
 import './App.css';
+
 import SignIn from './component/Connexion/SignIn';
 import DefaultStructure from './component/Default structure/DefaultStructure';
 import Feed from './component/Feed/Feed';
@@ -44,5 +45,7 @@ const NotFound = () => (
     <h1 className="text-2xl">404 - Page non trouvée</h1>
   </div>
 );
+
+
 
 export default App;
