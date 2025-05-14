@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserCircle, Search, Home, Bell, MessageCircle } from 'lucide-react';
+import { UserCircle, Search, Home, Bell, MessageCircle, Plus } from 'lucide-react';
 
 export default function Header() {
   const [activeIcon, setActiveIcon] = useState('home');
@@ -10,6 +10,7 @@ export default function Header() {
     { name: 'home', icon: <Home size={20} />, route: '/homepage' },
     { name: 'bell', icon: <Bell size={20} />, route: '/notifications' },
     { name: 'chat', icon: <MessageCircle size={20} />, route: '/messages' },
+    { name: 'plus', icon: <Plus size={20} />, route: '/CreatePost' },
   ];
 
   

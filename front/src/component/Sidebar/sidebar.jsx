@@ -68,7 +68,7 @@ export default function Sidebar() {
           {subredditOpen && (
             <div className="mt-3 ml-3 space-y-2 text-sm text-gray-300">
               <div
-                onClick={() => navigate('/createCommun')}
+                onClick={() => navigate('/create')}
                 className="flex items-center space-x-2 px-2 py-1 rounded hover:bg-white/10 cursor-pointer transition"
               >
                 <Plus size={16} color={iconColor} />
@@ -77,7 +77,7 @@ export default function Sidebar() {
 
               {subreddits?.data?.map((sub) => (
                 <div key={sub.id} className="px-2 py-1 rounded hover:bg-white/5 cursor-default">
-                  #{sub.attributes?.name || 'Sans nom'}
+                  #{sub?.name || 'Sans nom'}
                 </div>
               ))}
             </div>

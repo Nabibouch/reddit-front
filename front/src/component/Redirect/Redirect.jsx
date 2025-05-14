@@ -22,7 +22,7 @@ const LoginRedirect = () => {
         localStorage.setItem('jwt', res.jwt);
         localStorage.setItem('username', res.user.username);
         setText('You have been successfully logged in. You will be redirected in a few seconds...');
-        setTimeout(() => navigate('/'), 3000); // Redirige après 3 sec
+        setTimeout(() => navigate('/homepage'), 3000); // Redirige après 3 sec
       })
       .catch(err => {
         console.error(err);

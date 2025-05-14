@@ -16,7 +16,7 @@ const Feed = () => {
   const [documentId, setDocumentId] = useState('');
 
   const url = import.meta.env.VITE_API_URL;
-  const token = localStorage.getItem('jwt');
+  const token = localStorage.getItem('token');
 
   const navigate = useNavigate();
 
@@ -92,7 +92,7 @@ const Feed = () => {
       <div className='flex flex-col gap-[10px] bg-nightblue hover:brightness-115'>
         <div className='flex flex-row h-[25px] justify-between'>
           <h3 className='text-[16px]'>{post.sub_reddit?.name ?? "Aucune commu"}</h3>
-          <PrimaryButton name="rejoindre" use={}/>
+          <PrimaryButton name="rejoindre"/>
         </div>
         <h2 className='text-[20px]'>{post.title}</h2>
         {post.Photo ? (

@@ -1,12 +1,14 @@
 import './App.css';
 
 import SignIn from './component/Connexion/SignIn';
+import SignUp from './component/Inscription/SignUp';
 import DefaultStructure from './component/Default structure/DefaultStructure';
 import Feed from './component/Feed/Feed';
 import { Route, Routes } from 'react-router-dom';
 import Post from './component/Post/Post';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
 import ProfilePage from './component/ProfilPage/ProfilPage';
+import CreatePost from './component/Post/CreatePost';
 // import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -19,10 +21,12 @@ function App() {
   return(
       <Routes>
         <Route path='/connexion' element={<SignIn />} />
+        <Route path='/inscription' element={<SignUp />} />
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
         <Route path='post/:documentId' element={<DefaultStructure><Post /></DefaultStructure>} />
         <Route path='create' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
         <Route path='/users/:id' element={<DefaultStructure><ProfilePage /></DefaultStructure>}/>
+        <Route path='/createpost' element={<DefaultStructure><CreatePost /></DefaultStructure>}/>
         {/* <Route path='/dashboard' element={<DefaultStructure><ProfilPage /></DefaultStructure>} /> */}
         <Route path="*" element={<NotFound />} />
 

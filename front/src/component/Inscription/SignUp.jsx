@@ -80,12 +80,12 @@ export default function SignUp() {
       localStorage.setItem('jwt', response.data.jwt);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       navigate('/homepage');
-      toast.success('Inscription réussie!');
+    
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue';
       setError(message);
       setIsLoading(false);
-      toast.error(message);
+
     }
   };
 
@@ -191,7 +191,7 @@ export default function SignUp() {
           </span>
         </button>
 
-        <button
+        {/* <button
           type="button"
           onClick={handleGoogleSignUp}
           disabled={loadingGoogle}
@@ -205,7 +205,7 @@ export default function SignUp() {
           <span className="text-sm sm:text-base">
             {loadingGoogle ? 'Redirection...' : "S'inscrire avec Google"}
           </span>
-        </button>
+        </button> */}
 
         <button
           type="submit"
@@ -225,7 +225,7 @@ export default function SignUp() {
         </a>
       </p>
 
-      <ToastContainer />
+
     </div>
   );
 }

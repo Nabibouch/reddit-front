@@ -6,6 +6,7 @@ import LabelButton from "../Label/Label";
 import LabelButtonWithIcon from "../Label/LabelWIcon";
 import PrimaryButton from "../Button/PrimaryButton";
 import SecondaryButton from "../Button/SecondaryButton";
+import { useNavigate } from "react-router-dom";
 
 const CreateCommunity = () => {
     const [showModal, setShowModal] = useState(false);
@@ -18,7 +19,9 @@ const CreateCommunity = () => {
 
     const fToken = import.meta.env.VITE_API_TOKEN;
     const url = import.meta.env.VITE_API_URL;
-    const token = localStorage.getItem('jwt')
+    const token = localStorage.getItem('token')
+    const old_url = import.meta.env.VITE_API_OLD
+    const navigate = useNavigate();
 
     const choose = (topic) => {
         const alreadyChoosed = choosedTopics.find((t) => t.id === topic.id);
@@ -47,7 +50,7 @@ const CreateCommunity = () => {
             }
         }
         try {
-            const response = await axios.post(`${url}/sub-reddits?populate=*`, data, {
+            const response = await axios.post(`${old_url}/sub-reddits?populate=*`, data, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -65,7 +68,7 @@ const CreateCommunity = () => {
 
         const fetchTopics = async () => {
             try {
-                const Brutedata =await axios.get(`${url}/topics`,{
+                const Brutedata =await axios.get(`${old_url}/topics`,{
                     headers: {
                         Authorization: `Bearer ${fToken}`
                     }
@@ -118,8 +121,8 @@ const CreateCommunity = () => {
                     ))}
                     </div>
                     <div className="flex flex-row justify-end gap-1">
-                        <SecondaryButton name="Annuler" />
-                        <PrimaryButton name="Valider" use={() => submit()}/>
+                        <SecondaryButton title="Annuler" />
+                        <PrimaryButton name="Valider" use={() => submit()} use2={() => navigate('/homepage')}/>
                     </div>
                     </div>
                 </div>
@@ -153,7 +156,7 @@ const CreateCommunity = () => {
                             </div>
                         </div>
                         <div className="flex justify-end gap-1">
-                            <SecondaryButton name="annuler" use={() => setShowModal(false)}/>
+                            <SecondaryButton title="annuler" use={() => setShowModal(false)}/>
                             <PrimaryButton name="Valider" use={() => validate()} use2={() => setShowModal(false)}/>
                         </div>
                     </div>

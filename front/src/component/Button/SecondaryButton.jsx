@@ -1,7 +1,7 @@
-const PrimaryButton = ({ title, onClick = () => {}, disabled = false }) => {
+const PrimaryButton = ({ title, use = () => {}, disabled = false }) => {
     return (
       <button
-        onClick={onClick}
+        onClick={use}
         disabled={disabled}
         className={`
           bg-[#161B21]
