@@ -4,7 +4,7 @@ import axios from "axios"
 import TransparentButton from "../Button/TransparentButton"
 import { Pencil } from "lucide-react"
 
-//   const { id } = useParams()
+
 const url = import.meta.env.VITE_API_URL
 const token = localStorage.getItem("token")
 
@@ -25,7 +25,6 @@ export default function ProfilePage() {
       }
 
       try {
-        // const userRes = await axios.get(`${url}/users/${id}`, {
         const userRes = await axios.get(`${url}/users/me?populate=posts`, {
           headers: {
             Authorization: `Bearer ${token}`
@@ -33,12 +32,6 @@ export default function ProfilePage() {
         })
 
         const userId = userRes.data.id
-
-        const postsRes = await axios.get(`${url}/users/${userId}?populate=posts`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
 
         const commentsRes = await axios.get(`${url}/users/${userId}/comments`, {
           headers: {
@@ -138,25 +131,3 @@ export default function ProfilePage() {
     </div>
   )
 }
-
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const userRes = await fetch(`http://localhost:1337/api/users/${id}`)
-//         const postsRes = await fetch(`http://localhost:1337/api/users/${id}?populate=posts`)
-//         const commentsRes = await fetch(`http://localhost:1337/api/users/${id}/comments`)
-//         const savedRes = await fetch(`http://localhost:1337/api/users/${id}/saved`)
-
-//         setUser(await userRes.json())
-//         const postsData = await postsRes.json()
-//         setPosts(postsData.posts || [])
-//         setComments(await commentsRes.json())
-//         setSaved(await savedRes.json())
-//       } catch (error) {
-//         console.error("Une erreur est survenue lors du chargement :", error)
-//       }
-//     }
-
-//     fetchData()
-//   }, [id])
