@@ -2,8 +2,6 @@ import Header from "../Header/header";
 import Sidebar from "../Sidebar/sidebar";
 import Footer from "../Footer/Footer";
 
-
-
 const DefaultStructure = ({children}) => {
     return(
         <main className="flex flex-col h-[625px]">

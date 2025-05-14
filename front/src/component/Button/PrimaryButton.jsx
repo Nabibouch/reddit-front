@@ -36,6 +36,5 @@ const PrimaryButton = ({ name, use = () => {}, use2 = () => {}, disabled = false
       </button>
     );
   };
-  
+
   export default PrimaryButton;
-  

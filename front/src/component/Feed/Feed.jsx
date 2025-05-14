@@ -73,7 +73,7 @@ const Feed = () => {
   const joinCommunity = async () => {
     try {
       
-      const response = await axios.put
+      const response = await axios.put(``)
 
     } catch (error) {
       console.log(error);
@@ -92,7 +92,7 @@ const Feed = () => {
       <div className='flex flex-col gap-[10px] bg-nightblue hover:brightness-115'>
         <div className='flex flex-row h-[25px] justify-between'>
           <h3 className='text-[16px]'>{post.sub_reddit?.name ?? "Aucune commu"}</h3>
-          <PrimaryButton name="rejoindre" />
+          <PrimaryButton name="rejoindre" use={}/>
         </div>
         <h2 className='text-[20px]'>{post.title}</h2>
         {post.Photo ? (
