@@ -9,6 +9,7 @@ import Footer from './component/Footer/Footer';
 import Input from './component/Input with label/Input';
 import PrimaryButton from './component/Button/PrimaryButton';
 import SecondaryButton from './component/Button/SecondaryButton';
+import ProfilePage from './component/ProfilPage/ProfilPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/Feed" element={<Feed />} />
         <Route path="/CreateCommunity" element={<CreateCommunity />} />
         <Route path="/Test" element={<TestUI />} /> {/*la page test pour voir les buttons Monsieur LMRABET*/}
+        <Route path="/profile" element={<ProfilePage />} /> 
         <Route path="*" element={<NotFound />} />
       </Routes>
   );
