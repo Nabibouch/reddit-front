@@ -16,9 +16,9 @@ const CreateCommunity = () => {
     const [desc, setDesc] = useState();
 
 
-
+    const fToken = import.meta.env.VITE_API_TOKEN;
     const url = import.meta.env.VITE_API_URL;
-    const token = import.meta.env.VITE_API_TOKEN;
+    const token = localStorage.getItem('jwt')
 
     const choose = (topic) => {
         const alreadyChoosed = choosedTopics.find((t) => t.id === topic.id);
@@ -47,7 +47,7 @@ const CreateCommunity = () => {
             }
         }
         try {
-            const response = await axios.post(`${url}/sub-reddits`, data, {
+            const response = await axios.post(`${url}/sub-reddits?populate=*`, data, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -67,7 +67,7 @@ const CreateCommunity = () => {
             try {
                 const Brutedata =await axios.get(`${url}/topics`,{
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${fToken}`
                     }
                 });
                 const data = Brutedata.data.data;
