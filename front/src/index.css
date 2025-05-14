@@ -76,4 +76,23 @@ body{
   
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.no-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;
+}
+
+/* Scrollbar customisée */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #9ACECA;
+  border-radius: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: #161B21;
+}

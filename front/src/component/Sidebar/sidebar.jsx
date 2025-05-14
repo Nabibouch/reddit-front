@@ -77,7 +77,7 @@ export default function Sidebar() {
 
               {subreddits?.data?.map((sub) => (
                 <div key={sub.id} className="px-2 py-1 rounded hover:bg-white/5 cursor-default">
-                  #{sub.attributes?.name || 'Sans nom'}
+                  #{sub?.name || 'Sans nom'}
                 </div>
               ))}
             </div>

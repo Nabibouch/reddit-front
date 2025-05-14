@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Eye, EyeOff } from 'lucide-react'
-import { FcGoogle } from 'react-icons/fc' // ✅ Icône Google
+import { FcGoogle } from 'react-icons/fc' 
 
 export default function SignIn() {
   const navigate = useNavigate()
