@@ -94,7 +94,6 @@ const editItem = () => {
       )
     }
 
-  
     if (affiche === "commentaires") {
   return comments.length > 0 ? (
     comments.map((comment, index) => (
