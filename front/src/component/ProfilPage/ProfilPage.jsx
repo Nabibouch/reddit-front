@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
-// import { useParams } from "react-router-dom"
 import TransparentButton from "../Button/TransparentButton"
-import { Pencil } from "lucide-react"
+import { Pencil, Trash } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
-//   const { id } = useParams()
+
 const url = import.meta.env.VITE_API_URL
 const old_url = import.meta.env.VITE_API_OLD
 const token = localStorage.getItem("token")
+const user = JSON.parse(localStorage.getItem("user"));
+
 
 export default function ProfilePage() {
-  const [ user, setUser] = useState({})
   const [posts, setPosts] = useState([])
   const [comments, setComments] = useState([])
-  const [saved, setSaved] = useState([])
   const [affiche, setAffiche] = useState("postes")
-
-  // const { id } = useParams()
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,14 +25,6 @@ export default function ProfilePage() {
       }
 
       try {
-        // const userRes = await axios.get(`${url}/users/${id}`, {
-        const userRes = await axios.get(`${old_url}/users/me?populate=posts`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-
-        const userId = userRes.data.id
 
         const postsRes = await axios.get(`${old_url}/posts?filters[author][id][$eq]=3&populate=author`, {
           headers: {
@@ -47,15 +38,9 @@ export default function ProfilePage() {
           }
         })
 
-        // const savedRes = await axios.get(`${url}/users/${userId}/saved`, {
-        //   headers: {
-        //     Authorization: `Bearer ${token}`
-        //   }
-        // })
 
-        setUser(userRes.data)
-        setPosts(postsRes.data.posts || [])
-        setComments(commentsRes.data)
+        setPosts(postsRes.data.data || [])
+        setComments(commentsRes.data.data)
         // setSaved(savedRes.data)
       } catch (error) {
         console.error("Erreur lors du chargement :", error)
@@ -63,15 +48,45 @@ export default function ProfilePage() {
     }
 
     fetchData()
+    
   }, [])
+
+  const deleteItem = async (postId) => {
+    try {
+      await axios.delete(`${old_url}/posts/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+      },
+    });
+
+  } catch (error) {
+    console.error("Erreur lors de la suppression :", error);
+  }
+};
+
+const editItem = () => {
+  navigate("/edit")
+  console.log("cliqué");
+
+}
 
   const renderContent = () => {
     if (affiche === "postes") {
       return posts.length ? (
-        posts.map((post) => (
-          <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md">
-            <h3 className="text-lg font-semibold">{post.title || "Titre manquant"}</h3>
-            <p>{post.content || "Contenu manquant"}</p>
+        posts.map((post, index) => (
+          <div key={index} className="flex flex-row bg-nightblue-80 text-white p-4 rounded-md w-[300px] justify-between">
+            <div className="flex flex-col">
+              <h3 className="text-lg font-semibold">{post.title || "Titre manquant"}</h3>
+              <p>{post.content || "Contenu manquant"}</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <button onClick={() => deleteItem(post.id)} className="cursor-pointer">
+                <Trash size={20} />
+              </button>
+              <button onClick={() => editItem()} className="cursor-pointer">
+                <Pencil size={20} />
+              </button>
+            </div>
           </div>
         ))
       ) : (
@@ -79,17 +94,18 @@ export default function ProfilePage() {
       )
     }
 
+  
     if (affiche === "commentaires") {
-      return comments.length ? (
-        comments.map((comment, index) => (
-          <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md">
-            <p>{comment.content || "Commentaire vide"}</p>
-          </div>
-        ))
-      ) : (
-        <p>Aucun commentaire</p>
-      )
-    }
+  return comments.length > 0 ? (
+    comments.map((comment, index) => (
+      <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md w-[300px]">
+        <p>{comment.Contenu}</p>
+      </div>
+    ))
+  ) : (
+    <p>Aucun commentaire</p>
+  );
+}
 
     // if (affiche === "saved") {
     //   return saved.length ? (
@@ -107,7 +123,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 p-8 text-white">
+    <div className="flex flex-col gap-6 p-8 text-white w-[600px]">
       <div className="flex flex-col items-center gap-2 font-semibold">
         <div className="flex gap-4">
           <p>{user.username || "USERNAME"}</p>
@@ -119,11 +135,12 @@ export default function ProfilePage() {
         <TransparentButton
           title="Postes"
           use={() => setAffiche("postes")}
+          use2={() => console.log(posts)}
         />
         <TransparentButton
           title="Commentaires"
           use={() => setAffiche("commentaires") }
-          
+          use2={() => console.log(comments)}
         />
         {/* <TransparentButton
           title="Enregistrés"

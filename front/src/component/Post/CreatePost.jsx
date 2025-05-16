@@ -17,6 +17,7 @@ export default function CreatePost() {
 
 
   const token = localStorage.getItem('token');
+  const user = localStorage.getItem('user');
 
   const handleUploadClick = () => {
     fileInputRef.current.click()
@@ -60,6 +61,7 @@ export default function CreatePost() {
                 title : title,
                 contenu : description,
                 Photo : imageId,
+                
             }
         }
         const response = await axios.post('http://localhost:1337/api/posts', data, {

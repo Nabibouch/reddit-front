@@ -6,19 +6,14 @@ import { useNavigate } from 'react-router-dom';
 
 const Feed = () => {
 
-  const [community, setCommunity] = useState('');
-  const [error, setError] = useState('');
-  const [date, setDate] = useState('');
-  const [title, setTitle] = useState('');
-  const [image, setImage] = useState('');
+  const [communityMembers, setCommunityMembers] = useState([]);
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState('');
-  const [documentId, setDocumentId] = useState('');
+  
 
   const url = import.meta.env.VITE_API_URL;
   const token = localStorage.getItem('token');
 
-  const navigate = useNavigate();
 
 
   
@@ -31,13 +26,14 @@ const Feed = () => {
         return 
       }
       try {
-        const res = await axios.get(`${url}/users/me`, {
+        const res = await axios.get(`${url}/users/me?populate=*`, {
           headers : {
             Authorization : `Bearer ${token}`
           }
         })
-        console.log(res.data)
         setUser(res.data)
+        
+
       } catch (error) {
         console.log(error)
       }
@@ -45,43 +41,50 @@ const Feed = () => {
     
     const fetchPost = async () => {
       try {
-        const Brutedata = await axios.get(`${url}/posts?populate=*`,{
+       
+        const Brutedata = await axios.get(`${url}/posts?populate=Photo&populate=sub_reddit.members`, {
           headers: {
-            Authorization : `Bearer ${token}`
+            Authorization: `Bearer ${token}`
           }
-        })
-        const data = Brutedata.data.data
-        console.log(data);
-        setPosts(data);
-        setDocumentId(data.documentId)
+        });
+const data = Brutedata.data.data;
+setPosts(data);
+
         
       } catch (error) {
         console.log(error)
       }
     }
+
     fetchUser()
     fetchPost();
     
     
   },[]);
   
-  const redirection = () => {
   
-    navigate(`/post/${documentId}`)
-  }
+ 
   
-  const joinCommunity = async () => {
-    try {
-      
-      const response = await axios.put(``)
+  const joinCommunity = async (subRedditId) => {
+  try {
+    const res = await axios.put(`${url}/sub-reddits/${subRedditId}?populate=*`, {
+      data: {
+        members: {
+          connect: [{ id: user.id }]
+        }
+      }
+    }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-    } catch (error) {
-      console.log(error);
-      
-    }
-
-  }
   
+
+  } catch (error) {
+    console.error("Erreur lors de l'ajout :", error.response?.data || error);
+  }
+};
  
   return(
 
@@ -92,7 +95,7 @@ const Feed = () => {
       <div className='flex flex-col gap-[10px] bg-nightblue hover:brightness-115'>
         <div className='flex flex-row h-[25px] justify-between'>
           <h3 className='text-[16px]'>{post.sub_reddit?.name ?? "Aucune commu"}</h3>
-          <PrimaryButton name="rejoindre"/>
+          <PrimaryButton name="rejoindre" use={() => joinCommunity(post.sub_reddit.documentId)}/>
         </div>
         <h2 className='text-[20px]'>{post.title}</h2>
         {post.Photo ? (

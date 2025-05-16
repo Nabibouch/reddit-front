@@ -15,7 +15,7 @@ export default function Post () {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await axios.get(`${url}/posts/${documentId}?populate=Photo&populate=comments.author`, {
+        const res = await axios.get(`${url}/posts/${documentId}?populate=Photo&populate=comments.author&populate=author`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
