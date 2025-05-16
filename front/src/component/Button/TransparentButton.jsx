@@ -1,11 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 
-export default function TransparentButton({ title, value, activeTab, setActiveTab, navigateTo, navigate }) {
+export default function TransparentButton({ title, use = () => {}, use2 = () => {} }) {
+  
+  const [activeTab, setActiveTab] = useState(false);
+  
   const handleClick = () => {
-    setActiveTab(value)
-    if (navigateTo && navigate) {
-      navigate(navigateTo)
-    }
+    setActiveTab(true)
+    use()
+    use2()
   }
 
   return (
@@ -14,7 +16,7 @@ export default function TransparentButton({ title, value, activeTab, setActiveTa
       className={
         `px-4 py-2 rounded-lg transition-colors duration-200 text-white ` +
         `bg-nightblue hover:bg-gray-80 ` +
-        (activeTab === value ? 'bg-darkteal60' : '')
+        (activeTab === true ? 'bg-darkteal60' : '')
       }
     >
       {title}

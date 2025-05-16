@@ -13,6 +13,7 @@ export default function Header() {
     { name: 'plus', icon: <Plus size={20} />, route: '/CreatePost' },
   ];
 
+  const user = localStorage.getItem('user')
   
 
   const iconClasses = (iconName) =>
@@ -22,7 +23,7 @@ export default function Header() {
   return (
     <nav className="bg-nightblue text-white font-manrope flex items-center justify-between px-6 py-3 shadow-md border-b border-b-gray">
       
-      <div className="flex items-center space-x-2 hover:opacity-90 cursor-pointer transition duration-200">
+      <div className="flex items-center space-x-2 hover:opacity-90 cursor-pointer transition duration-200" onClick={() => navigate('/User')}>
         <UserCircle size={22} />
         <span className="text-sm font-medium">Username</span>
       </div>

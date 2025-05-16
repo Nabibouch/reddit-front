@@ -96,7 +96,7 @@ const Feed = () => {
         </div>
         <h2 className='text-[20px]'>{post.title}</h2>
         {post.Photo ? (
-          <img src={`${post.Photo[0].formats.thumbnail.url}`} alt="image du post" />
+          <img src={`http://localhost:1337${post.Photo[0].url}`} alt="image du post" />
         ) : (
           <p>{post.contenu}</p>
         )}

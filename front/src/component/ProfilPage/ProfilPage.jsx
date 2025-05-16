@@ -10,7 +10,7 @@ const old_url = import.meta.env.VITE_API_OLD
 const token = localStorage.getItem("token")
 
 export default function ProfilePage() {
-  const [user, setUser] = useState({})
+  const [ user, setUser] = useState({})
   const [posts, setPosts] = useState([])
   const [comments, setComments] = useState([])
   const [saved, setSaved] = useState([])
@@ -35,28 +35,28 @@ export default function ProfilePage() {
 
         const userId = userRes.data.id
 
-        const postsRes = await axios.get(`${old_url}/users/${userId}?populate=posts`, {
+        const postsRes = await axios.get(`${old_url}/posts?filters[author][id][$eq]=3&populate=author`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
 
-        const commentsRes = await axios.get(`${url}/users/${userId}/comments`, {
+        const commentsRes = await axios.get(`${url}/commentaires?filters[author][id][$eq]=3&populate=author`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
 
-        const savedRes = await axios.get(`${url}/users/${userId}/saved`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
+        // const savedRes = await axios.get(`${url}/users/${userId}/saved`, {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`
+        //   }
+        // })
 
         setUser(userRes.data)
         setPosts(postsRes.data.posts || [])
         setComments(commentsRes.data)
-        setSaved(savedRes.data)
+        // setSaved(savedRes.data)
       } catch (error) {
         console.error("Erreur lors du chargement :", error)
       }
@@ -68,7 +68,7 @@ export default function ProfilePage() {
   const renderContent = () => {
     if (affiche === "postes") {
       return posts.length ? (
-        posts.map((post, index) => (
+        posts.map((post) => (
           <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md">
             <h3 className="text-lg font-semibold">{post.title || "Titre manquant"}</h3>
             <p>{post.content || "Contenu manquant"}</p>
@@ -91,17 +91,17 @@ export default function ProfilePage() {
       )
     }
 
-    if (affiche === "saved") {
-      return saved.length ? (
-        saved.map((item, index) => (
-          <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md">
-            <h3>{item.title || "Poste sans titre"}</h3>
-          </div>
-        ))
-      ) : (
-        <p>Aucun post enregistré</p>
-      )
-    }
+    // if (affiche === "saved") {
+    //   return saved.length ? (
+    //     saved.map((item, index) => (
+    //       <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md">
+    //         <h3>{item.title || "Poste sans titre"}</h3>
+    //       </div>
+    //     ))
+    //   ) : (
+    //     <p>Aucun post enregistré</p>
+    //   )
+    // }
 
     return null
   }
@@ -118,19 +118,18 @@ export default function ProfilePage() {
       <div className="flex gap-4">
         <TransparentButton
           title="Postes"
-          onClick={() => setAffiche("postes")}
-          color="bg-nightblue text-white hover:bg-gray-80"
+          use={() => setAffiche("postes")}
         />
         <TransparentButton
           title="Commentaires"
-          onClick={() => setAffiche("commentaires")}
-          color="bg-nightblue text-white hover:bg-gray-80"
+          use={() => setAffiche("commentaires") }
+          
         />
-        <TransparentButton
+        {/* <TransparentButton
           title="Enregistrés"
-          onClick={() => setAffiche("saved")}
+          use={() => setAffiche()}
           color="bg-nightblue text-white hover:bg-gray-80"
-        />
+        /> */}
       </div>
 
       <div className="flex flex-col gap-4">

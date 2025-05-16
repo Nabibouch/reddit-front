@@ -70,7 +70,7 @@ export default function CreatePost() {
 
       
 
-      navigate('/Post');
+      navigate('/homepage');
     } catch (err) {
       const message = err.response?.data?.error?.message || 'Erreur inconnue';
       setError(message);

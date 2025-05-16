@@ -20,14 +20,14 @@ function App() {
 
   return(
       <Routes>
-        <Route path='/connexion' element={<SignIn />} />
+        <Route path='/' element={<SignIn />} />
         <Route path='/inscription' element={<SignUp />} />
         <Route path='/homepage' element={<DefaultStructure><Feed /></DefaultStructure>} />
         <Route path='post/:documentId' element={<DefaultStructure><Post /></DefaultStructure>} />
         <Route path='create' element={<DefaultStructure><CreateCommunity /></DefaultStructure>} />
         <Route path='/users/:id' element={<DefaultStructure><ProfilePage /></DefaultStructure>}/>
         <Route path='/createpost' element={<DefaultStructure><CreatePost /></DefaultStructure>}/>
-        {/* <Route path='/dashboard' element={<DefaultStructure><ProfilPage /></DefaultStructure>} /> */}
+        <Route path='/User' element={<DefaultStructure><ProfilePage /></DefaultStructure>}/>
         <Route path="*" element={<NotFound />} />
 
       </Routes>
