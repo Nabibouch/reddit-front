@@ -60,7 +60,7 @@ npm run dev
 
 ## Membres de l’équipe
 
-- **LMRABET Nabil** — Chef de projet & développeur front-end
+- **LMRABET Nabil** — Chef de projet & développeur full-stack
   
 - **ANDRIATSEHENO Anjara** — Développeur full-stack
   
