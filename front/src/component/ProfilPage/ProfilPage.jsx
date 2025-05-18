@@ -51,22 +51,42 @@ export default function ProfilePage() {
     
   }, [])
 
-  const deleteItem = async (postId) => {
+  const deletePost = async (postId) => {
     try {
       await axios.delete(`${old_url}/posts/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
       },
     });
+    setPosts(prevPosts => prevPosts.filter(post => post.documentId !== postId));
 
   } catch (error) {
     console.error("Erreur lors de la suppression :", error);
   }
 };
 
-const editItem = () => {
-  navigate("/edit")
-  console.log("cliqué");
+  const deleteCom = async (commentaireId) => {
+    try {
+      await axios.delete(`${old_url}/commentaires/${commentaireId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+      },
+    });
+    setComments(prevComments => prevComments.filter(com => com.documentId !== commentaireId));
+
+
+  } catch (error) {
+    console.error("Erreur lors de la suppression :", error);
+  }
+};
+
+const editPost = (id) => {
+  navigate(`/editPost/${id}`)
+
+}
+
+const editCom = (id) => {
+  navigate(`/editCom/${id}`)
 
 }
 
@@ -77,13 +97,13 @@ const editItem = () => {
           <div key={index} className="flex flex-row bg-nightblue-80 text-white p-4 rounded-md w-[300px] justify-between">
             <div className="flex flex-col">
               <h3 className="text-lg font-semibold">{post.title || "Titre manquant"}</h3>
-              <p>{post.content || "Contenu manquant"}</p>
+              <p>{post.contenu || "Contenu manquant"}</p>
             </div>
             <div className="flex flex-col gap-3">
-              <button onClick={() => deleteItem(post.id)} className="cursor-pointer">
+              <button onClick={() => deletePost(post.documentId)} className="cursor-pointer">
                 <Trash size={20} />
               </button>
-              <button onClick={() => editItem()} className="cursor-pointer">
+              <button onClick={() => editPost(post.documentId)} className="cursor-pointer">
                 <Pencil size={20} />
               </button>
             </div>
@@ -97,8 +117,16 @@ const editItem = () => {
     if (affiche === "commentaires") {
   return comments.length > 0 ? (
     comments.map((comment, index) => (
-      <div key={index} className="bg-nightblue-80 text-white p-4 rounded-md w-[300px]">
-        <p>{comment.Contenu}</p>
+      <div key={index} className="flex flex-row justify-between bg-nightblue-80 text-white p-4 rounded-md w-[300px]">
+          <p>{comment.Contenu}</p>
+          <div className="flex flex-col gap-3">
+            <button onClick={() => deleteCom(comment.documentId)} className="cursor-pointer">
+              <Trash size={20} />
+            </button>
+            <button onClick={() => editCom(comment.documentId)} className="cursor-pointer">
+              <Pencil size={20} />
+            </button>
+          </div>
       </div>
     ))
   ) : (

@@ -9,6 +9,7 @@ import Post from './component/Post/Post';
 import CreateCommunity from './component/CreateComunity/CreateComunity';
 import ProfilePage from './component/ProfilPage/ProfilPage';
 import CreatePost from './component/Post/CreatePost';
+import EditPost from './component/Post/EditPost';
 // import ProtectedRoute from './component/ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path='/createpost' element={<DefaultStructure><CreatePost /></DefaultStructure>}/>
         <Route path='/User' element={<DefaultStructure><ProfilePage /></DefaultStructure>}/>
         <Route path="*" element={<NotFound />} />
+        <Route path='/editPost/:id' element={<DefaultStructure><EditPost /></DefaultStructure>} />
 
       </Routes>
     )

@@ -50,7 +50,7 @@ const CreateCommunity = () => {
             }
         }
         try {
-            const response = await axios.post(`${old_url}/sub-reddits?populate=*`, data, {
+            const response = await axios.post(`${url}/sub-reddits?populate=*`, data, {
                 headers : {
                     Authorization : `Bearer ${token}`
                 }
@@ -68,7 +68,7 @@ const CreateCommunity = () => {
 
         const fetchTopics = async () => {
             try {
-                const Brutedata =await axios.get(`${old_url}/topics`,{
+                const Brutedata =await axios.get(`${url}/topics`,{
                     headers: {
                         Authorization: `Bearer ${fToken}`
                     }
