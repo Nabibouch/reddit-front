@@ -2,6 +2,7 @@
 
 > Front-end de l'application Reddit-like développée en React + Vite.  
 > Interface utilisateur moderne, authentification, gestion des posts, commentaires et sauvegardes.
+> Lien vers le backend : https://github.com/Nabibouch/reddit
 
 ---
 
